@@ -43,3 +43,22 @@ their respective institutions. Naming them describes the series' affiliation; it
 does not imply either university endorses this site. Both universities restrict
 use of their logos and wordmarks — check with them before placing an official
 institutional logo in the header.
+
+## Company logos
+
+The five marks below "Past conversations" identify the organisations the
+speakers lead. This is nominative use — naming a company to identify it — not a
+claim of endorsement, sponsorship, or partnership. Each remains the trademark of
+its owner, and none should be moved into the header, used as a site logo, or
+placed anywhere implying the company sponsors the Series.
+
+| Mark | File | Source |
+|---|---|---|
+| Rothschild & Co | `rothschild.png` | leadersseries.com media library |
+| Deloitte | `deloitte.png` | leadersseries.com media library |
+| ACCIONA Energía | `acciona-energia.png` | leadersseries.com media library |
+| Energy Capital Partners | `energy-capital-partners.png` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Energy_Capital_Partners.png), public domain |
+| Ariel Investments | `ariel-investments.svg` | wordmark from arielinvestments.com, recomposed as a standalone SVG |
+
+All are rendered flat bone-white via CSS (`brightness(0) invert(1)`), so no
+brand colour is reproduced on the page.

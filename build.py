@@ -37,6 +37,11 @@ WP_MEDIA_BASE = "https://leadersseries.com/wp-content/uploads/2026/09/"
 COLUMBIA = "columbia-low-memorial-library.jpg"
 STANFORD = "stanford-main-quad.jpg"
 
+# Company logos live in images/logos/. Each target rewrites __LOGO_BASE__ to
+# whatever prefix works there: a relative folder, the WordPress media library,
+# or (for the single-file build) an inlined data URI per logo.
+LOGOS = "logos"
+
 TITLE = "Leaders Series"
 DESCRIPTION = (
     "Conversations with global decision-makers. An independent, student-led "
@@ -75,10 +80,23 @@ def data_uri(name: str) -> str:
     return "data:image/jpeg;base64," + base64.b64encode(raw).decode()
 
 
-def render(template: str, columbia: str, stanford: str, preloads: str = "") -> str:
+def render(template: str, columbia: str, stanford: str, preloads: str = "",
+           logo_base: str = "") -> str:
     out = template.replace("__IMG_COLUMBIA__", columbia)
     out = out.replace("__IMG_STANFORD__", stanford)
+    out = out.replace("__LOGO_BASE__", logo_base)
     return out.replace("<!--__PRELOADS__-->", preloads)
+
+
+def inline_logos(html: str) -> str:
+    """Replace every remaining __LOGO_BASE__<file> with that file as a data URI."""
+    def repl(m):
+        name = m.group(1)
+        path = IMAGES / LOGOS / name
+        mime = "image/svg+xml" if name.endswith(".svg") else "image/png"
+        return "data:%s;base64,%s" % (
+            mime, base64.b64encode(path.read_bytes()).decode())
+    return re.sub(r"__LOGO_BASE__([\w.\-]+)", repl, html)
 
 
 def preload_tags(*urls: str) -> str:
@@ -103,6 +121,7 @@ def main() -> int:
         f"images/{COLUMBIA}",
         f"images/{STANFORD}",
         preload_tags(f"images/{COLUMBIA}", f"images/{STANFORD}"),
+        logo_base=f"images/{LOGOS}/",
     )
     (ROOT / "index.html").write_text(document(site), encoding="utf-8")
 
@@ -112,11 +131,14 @@ def main() -> int:
         WP_MEDIA_BASE + COLUMBIA,
         WP_MEDIA_BASE + STANFORD,
         preload_tags(WP_MEDIA_BASE + COLUMBIA, WP_MEDIA_BASE + STANFORD),
+        logo_base=WP_MEDIA_BASE,
     )
     (DIST / "wordpress.html").write_text(wp, encoding="utf-8")
 
     # 3. one self-contained file
-    single = render(template, data_uri(COLUMBIA), data_uri(STANFORD))
+    # keep the token intact through render() so inline_logos can still see it
+    single = inline_logos(render(template, data_uri(COLUMBIA), data_uri(STANFORD),
+                                 logo_base="__LOGO_BASE__"))
     (DIST / "single-file.html").write_text(document(single), encoding="utf-8")
 
     for f in [ROOT / "index.html", *sorted(DIST.iterdir())]:
@@ -125,7 +147,7 @@ def main() -> int:
     # the standalone build must not smuggle in an absolute path to the author's
     # machine or to WordPress -- it has to work from any directory it is served
     body = (ROOT / "index.html").read_text(encoding="utf-8")
-    for bad in ("leadersseries.com/wp-content", "/Users/", "file://"):
+    for bad in ("leadersseries.com/wp-content", "/Users/", "file://", "__LOGO_BASE__"):
         if bad in body:
             print(f"error: dist/index.html leaks {bad!r}", file=sys.stderr)
             return 1

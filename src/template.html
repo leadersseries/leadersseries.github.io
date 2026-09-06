@@ -487,6 +487,49 @@
 }
 
 /* =========================================================
+   COMPANY LOGOS + SECTOR FILTER
+   ========================================================= */
+.ls-root .ls-logos {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: clamp(26px, 4vw, 54px);
+  margin-top: clamp(30px, 4vw, 44px);
+  padding-bottom: clamp(28px, 4vw, 40px);
+  border-bottom: 1px solid var(--line-2);
+}
+.ls-root .ls-logos img {
+  height: 26px; width: auto; display: block;
+  /* every mark is a different colour; flatten them all to one bone-white
+     so the row reads as a set rather than five competing brands */
+  filter: brightness(0) invert(1);
+  opacity: .55; transition: opacity .3s ease;
+}
+.ls-root .ls-logos img:hover { opacity: .95; }
+.ls-root .ls-logos img.ls-logo--tall { height: 34px; }
+
+.ls-root .ls-filter {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 10px;
+  margin-top: clamp(28px, 4vw, 40px);
+}
+.ls-root .ls-filter button {
+  font-family: var(--f-u); font-size: .69rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  padding: 10px 16px; border: 1px solid var(--line); color: var(--muted);
+  transition: color .25s, border-color .25s, background .25s;
+}
+.ls-root .ls-filter button:hover { color: var(--bone); border-color: rgba(240,237,231,.34); }
+.ls-root .ls-filter button[aria-pressed="true"] {
+  background: var(--bone); border-color: var(--bone); color: var(--ink);
+}
+.ls-root .ls-filter button i {
+  font-style: normal; opacity: .55; margin-left: 7px;
+  font-variant-numeric: tabular-nums;
+}
+.ls-root .ls-event[hidden] { display: none; }
+.ls-root .ls-filter-empty {
+  padding: 30px 0; color: var(--muted); font-style: italic;
+}
+
+/* =========================================================
    CONNECT
    ========================================================= */
 .ls-root .ls-connect-grid {
@@ -764,11 +807,26 @@
       <div class="ls-rv">
         <span class="ls-label">Events calendar</span>
         <h2 class="ls-h2" style="margin-top:16px;max-width:20ch;">Past conversations.</h2>
+
+        <div class="ls-logos" aria-label="Companies represented">
+          <img src="__LOGO_BASE__rothschild.png" alt="Rothschild &amp; Co" loading="lazy">
+          <img src="__LOGO_BASE__deloitte.png" alt="Deloitte" loading="lazy">
+          <img src="__LOGO_BASE__acciona-energia.png" alt="ACCIONA Energía" class="ls-logo--tall" loading="lazy">
+          <img src="__LOGO_BASE__energy-capital-partners.png" alt="Energy Capital Partners" class="ls-logo--tall" loading="lazy">
+          <img src="__LOGO_BASE__ariel-investments.svg" alt="Ariel Investments" class="ls-logo--tall" loading="lazy">
+        </div>
+
+        <div class="ls-filter" id="lsFilter" role="group" aria-label="Filter sessions by sector">
+          <button type="button" data-sector="all" aria-pressed="true">All <i>5</i></button>
+          <button type="button" data-sector="Finance" aria-pressed="false">Finance <i>2</i></button>
+          <button type="button" data-sector="Energy" aria-pressed="false">Energy <i>2</i></button>
+          <button type="button" data-sector="Consulting" aria-pressed="false">Consulting <i>1</i></button>
+        </div>
       </div>
 
       <div class="ls-events ls-rv">
 
-      <article class="ls-event">
+      <article class="ls-event" data-sector="Finance">
         <div class="ls-date"><b>04</b><span>May 2026</span></div>
         <div>
           <h3 class="ls-ev-name">John W. Rogers, Jr.</h3>
@@ -791,7 +849,7 @@
         </div>
       </article>
 
-      <article class="ls-event">
+      <article class="ls-event" data-sector="Consulting">
         <div class="ls-date"><b>09</b><span>Apr 2026</span></div>
         <div>
           <h3 class="ls-ev-name">Joseph B. Ucuzoglu</h3>
@@ -814,7 +872,7 @@
         </div>
       </article>
 
-      <article class="ls-event">
+      <article class="ls-event" data-sector="Energy">
         <div class="ls-date"><b>26</b><span>Feb 2026</span></div>
         <div>
           <h3 class="ls-ev-name">Doug Kimmelman</h3>
@@ -837,7 +895,7 @@
         </div>
       </article>
 
-      <article class="ls-event">
+      <article class="ls-event" data-sector="Energy">
         <div class="ls-date"><b>19</b><span>Feb 2026</span></div>
         <div>
           <h3 class="ls-ev-name">Rafael Mateo Alcalá</h3>
@@ -860,7 +918,7 @@
         </div>
       </article>
 
-      <article class="ls-event">
+      <article class="ls-event" data-sector="Finance">
         <div class="ls-date"><b>05</b><span>Feb 2026</span></div>
         <div>
           <h3 class="ls-ev-name">Alexandre de Rothschild</h3>
@@ -1057,6 +1115,27 @@
     }, { passive: true });
     window.addEventListener('resize', update, { passive: true });
     update();   // settle on beat 01 at rest, before any scrolling
+  })();
+
+  /* ---- sector filter: show only the sessions from one sector ---- */
+  (function () {
+    var bar = document.getElementById('lsFilter');
+    if (!bar) return;
+    var cards = [].slice.call(root.querySelectorAll('.ls-event'));
+    if (!cards.length) return;
+
+    bar.addEventListener('click', function (e) {
+      var btn = e.target.closest && e.target.closest('button[data-sector]');
+      if (!btn || !bar.contains(btn)) return;
+      var want = btn.getAttribute('data-sector');
+
+      [].forEach.call(bar.querySelectorAll('button[data-sector]'), function (b) {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+      cards.forEach(function (c) {
+        c.hidden = !(want === 'all' || c.getAttribute('data-sector') === want);
+      });
+    });
   })();
 
   /* ---- reveals (progressive enhancement: visible without JS) ---- */
