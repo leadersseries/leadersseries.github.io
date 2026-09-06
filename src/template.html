@@ -9,7 +9,7 @@
 <!--__PRELOADS__-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Archivo:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=Archivo:wght@500;600;700&display=swap">
 
 <style>
 /* ---------- scoped reset ---------- */
@@ -40,13 +40,14 @@
   --img-stanford: url("__IMG_STANFORD__");
 
   --pad: clamp(20px, 5vw, 60px);
-  --f-d: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --f-display: "Fraunces", "Newsreader", Georgia, serif;
+  --f-body: "Newsreader", "Iowan Old Style", Georgia, serif;
   --f-u: "Archivo", "Helvetica Neue", Arial, sans-serif;
 
   position: relative;
   background: var(--ink);
   color: var(--bone);
-  font-family: var(--f-d);
+  font-family: var(--f-body);
   font-size: 17px; line-height: 1.62;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;                       /* clip, not hidden — keeps sticky working */
@@ -61,11 +62,11 @@
 }
 .ls-root .ls-h2 {
   font-size: clamp(1.85rem, 4vw, 3.1rem); line-height: 1.1;
-  font-weight: 300; letter-spacing: -.018em; text-wrap: balance;
+  font-family: var(--f-display); font-weight: 600; letter-spacing: -.022em; text-wrap: balance;
 }
 .ls-root .ls-h3 {
   font-size: clamp(1.2rem, 1.9vw, 1.5rem); line-height: 1.25;
-  font-weight: 400; letter-spacing: -.01em;
+  font-family: var(--f-display); font-weight: 600; letter-spacing: -.014em;
 }
 .ls-root .ls-body { color: var(--dim); max-width: 66ch; }
 .ls-root .ls-body + .ls-body { margin-top: 1em; }
@@ -138,7 +139,7 @@
 }
 .ls-root .ls-menu.ls-open { opacity: 1; visibility: visible; }
 .ls-root .ls-menu a {
-  font-size: clamp(2rem, 9vw, 3.4rem); font-weight: 300; letter-spacing: -.02em;
+  font-size: clamp(2rem, 9vw, 3.4rem); font-family: var(--f-display); font-weight: 600; letter-spacing: -.02em;
   padding: 12px 0; border-bottom: 1px solid var(--line-2);
 }
 .ls-root .ls-menu a:last-of-type { border-bottom: 0; }
@@ -203,10 +204,10 @@
 .ls-root .ls-hero-copy .ls-label { color: var(--dim); }
 .ls-root .ls-title {
   font-size: clamp(2.5rem, 6.6vw, 5.4rem); line-height: .98;
-  font-weight: 300; letter-spacing: -.032em; margin: 22px 0 0; text-wrap: balance;
+  font-family: var(--f-display); font-weight: 700; letter-spacing: -.035em; margin: 22px 0 0; text-wrap: balance;
   text-shadow: 0 2px 30px rgba(15,16,20,.65);
 }
-.ls-root .ls-title i { font-style: italic; font-weight: 300; }
+.ls-root .ls-title i { font-style: italic; font-weight: 600; }
 .ls-root .ls-sub {
   margin-top: 20px; font-size: clamp(1rem, 1.5vw, 1.22rem);
   color: #DAD7D1; max-width: 46ch; text-shadow: 0 1px 16px rgba(15,16,20,.7);
@@ -218,7 +219,7 @@
 }
 .ls-root .ls-campus-lock .a { color: var(--columbia); }
 .ls-root .ls-campus-lock .b { color: var(--sand); }
-.ls-root .ls-campus-lock em { color: var(--muted); font-family: var(--f-d); font-style: italic;
+.ls-root .ls-campus-lock em { color: var(--muted); font-family: var(--f-body); font-style: italic;
   font-size: 1.05rem; letter-spacing: 0; text-transform: none; }
 
 .ls-root .ls-hero-foot {
@@ -239,7 +240,7 @@
 }
 .ls-root .ls-stat { background: var(--ink); padding: 34px var(--pad); }
 .ls-root .ls-stat b {
-  display: block; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300;
+  display: block; font-size: clamp(1.8rem, 3vw, 2.6rem); font-family: var(--f-display); font-weight: 600;
   letter-spacing: -.02em; line-height: 1;
 }
 .ls-root .ls-stat span {
@@ -356,7 +357,7 @@
 .ls-root .ls-beat[data-campus="cross"] .ls-beat-rule {
   width: 92px; background: linear-gradient(90deg, var(--columbia), var(--sand)); }
 .ls-root .ls-beat h3 {
-  font-size: clamp(1.7rem, 3.4vw, 2.7rem); line-height: 1.12; font-weight: 300;
+  font-size: clamp(1.7rem, 3.4vw, 2.7rem); line-height: 1.12; font-family: var(--f-display); font-weight: 600;
   letter-spacing: -.02em; text-wrap: balance;
 }
 .ls-root .ls-beat p { margin-top: 18px; color: #D2D0CB; max-width: 52ch; }
@@ -447,12 +448,12 @@
 .ls-root .ls-date {
   font-family: var(--f-u); font-variant-numeric: tabular-nums; line-height: 1.15;
 }
-.ls-root .ls-date b { display: block; font-size: 2.3rem; font-weight: 300; letter-spacing: -.02em; }
+.ls-root .ls-date b { display: block; font-size: 2.3rem; font-weight: 600; letter-spacing: -.02em; }
 .ls-root .ls-date span {
   display: block; font-size: .67rem; font-weight: 600; letter-spacing: .19em;
   text-transform: uppercase; color: var(--muted); margin-top: 5px;
 }
-.ls-root .ls-ev-name { font-size: clamp(1.3rem, 2.1vw, 1.65rem); font-weight: 400; letter-spacing: -.015em; }
+.ls-root .ls-ev-name { font-size: clamp(1.3rem, 2.1vw, 1.65rem); font-family: var(--f-display); font-weight: 600; letter-spacing: -.015em; }
 .ls-root .ls-ev-role {
   margin-top: 7px; font-family: var(--f-u); font-size: .73rem; font-weight: 500;
   letter-spacing: .04em; color: var(--muted); line-height: 1.55;
