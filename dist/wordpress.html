@@ -1,0 +1,1051 @@
+<!-- =================================================================
+     LEADERS SERIES — full homepage
+     Content taken from leadersseries.com (Home / Events / Connect).
+     Namespaced under .ls-root. Delete the <title> line when pasting
+     into Elementor. To drop the nav (if your theme header stays on),
+     delete the block marked  >>> NAV — DELETE TO KEEP THEME HEADER <<<
+     ================================================================= -->
+
+<link rel="preload" as="image" href="https://leadersseries.com/wp-content/uploads/2026/09/columbia-low-memorial-library.jpg">
+<link rel="preload" as="image" href="https://leadersseries.com/wp-content/uploads/2026/09/stanford-main-quad.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Archivo:wght@400;500;600;700&display=swap">
+
+<style>
+/* ---------- scoped reset ---------- */
+.ls-root, .ls-root *, .ls-root *::before, .ls-root *::after { box-sizing: border-box; }
+.ls-root h1, .ls-root h2, .ls-root h3, .ls-root h4, .ls-root p,
+.ls-root ul, .ls-root ol, .ls-root li, .ls-root figure, .ls-root blockquote {
+  margin: 0; padding: 0; border: 0; font: inherit; color: inherit;
+  letter-spacing: inherit; text-transform: none; list-style: none;
+}
+.ls-root a { color: inherit; text-decoration: none; }
+.ls-root button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* ---------- tokens ---------- */
+.ls-root {
+  --ink:      #0F1014;
+  --ink-2:    #16171D;
+  --ink-3:    #1D1F27;
+  --bone:     #F0EDE7;
+  --dim:      #B6B8C2;
+  --muted:    #8E909B;
+  --columbia: #9BCBEB;
+  --cardinal: #D9534A;
+  --sand:     #C9A66B;
+  --line:     rgba(240,237,231,.13);
+  --line-2:   rgba(240,237,231,.07);
+
+  --img-columbia: url("https://leadersseries.com/wp-content/uploads/2026/09/columbia-low-memorial-library.jpg");
+  --img-stanford: url("https://leadersseries.com/wp-content/uploads/2026/09/stanford-main-quad.jpg");
+
+  --pad: clamp(20px, 5vw, 60px);
+  --f-d: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --f-u: "Archivo", "Helvetica Neue", Arial, sans-serif;
+
+  position: relative;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--f-d);
+  font-size: 17px; line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;                       /* clip, not hidden — keeps sticky working */
+  width: 100vw; margin-left: calc(50% - 50vw);
+}
+
+.ls-root .ls-wrap { max-width: 1240px; margin: 0 auto; padding: 0 var(--pad); }
+
+.ls-root .ls-label {
+  font-family: var(--f-u); font-size: .69rem; font-weight: 600;
+  letter-spacing: .21em; text-transform: uppercase; color: var(--muted);
+}
+.ls-root .ls-h2 {
+  font-size: clamp(1.85rem, 4vw, 3.1rem); line-height: 1.1;
+  font-weight: 300; letter-spacing: -.018em; text-wrap: balance;
+}
+.ls-root .ls-h3 {
+  font-size: clamp(1.2rem, 1.9vw, 1.5rem); line-height: 1.25;
+  font-weight: 400; letter-spacing: -.01em;
+}
+.ls-root .ls-body { color: var(--dim); max-width: 66ch; }
+.ls-root .ls-body + .ls-body { margin-top: 1em; }
+
+/* =========================================================
+   >>> NAV — DELETE TO KEEP THEME HEADER <<<
+   ========================================================= */
+.ls-root .ls-nav {
+  position: sticky; top: 0; z-index: 60;
+  background: rgba(15,16,20,.72);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line-2);
+}
+.ls-root .ls-nav-in {
+  max-width: 1240px; margin: 0 auto; padding: 0 var(--pad);
+  height: 72px; display: flex; align-items: center; gap: 24px;
+}
+.ls-root .ls-mark { display: flex; flex-direction: column; line-height: 1; margin-right: auto; }
+.ls-root .ls-mark b {
+  font-family: var(--f-u); font-size: .84rem; font-weight: 700;
+  letter-spacing: .24em; text-transform: uppercase;
+}
+.ls-root .ls-mark span {
+  font-family: var(--f-u); font-size: .58rem; font-weight: 500;
+  letter-spacing: .17em; text-transform: uppercase; color: var(--muted); margin-top: 6px;
+}
+.ls-root .ls-links { display: flex; align-items: center; gap: 34px; }
+.ls-root .ls-links a {
+  font-family: var(--f-u); font-size: .76rem; font-weight: 500;
+  letter-spacing: .13em; text-transform: uppercase; color: var(--dim);
+  padding: 6px 0; border-bottom: 1px solid transparent; transition: color .25s, border-color .25s;
+}
+.ls-root .ls-links a:hover, .ls-root .ls-links a:focus-visible {
+  color: var(--bone); border-bottom-color: var(--columbia);
+}
+.ls-root .ls-cta {
+  font-family: var(--f-u); font-size: .72rem; font-weight: 600;
+  letter-spacing: .15em; text-transform: uppercase;
+  padding: 11px 20px; border: 1px solid var(--line);
+  color: var(--bone); transition: background .25s, border-color .25s, color .25s;
+}
+.ls-root .ls-cta:hover, .ls-root .ls-cta:focus-visible {
+  background: var(--bone); border-color: var(--bone); color: var(--ink);
+}
+
+/* menu icon — always visible, at every width */
+.ls-root .ls-burger {
+  display: block; width: 42px; height: 42px; position: relative;
+  border: 1px solid var(--line); flex: 0 0 auto; margin-left: 4px;
+  transition: border-color .25s;
+}
+.ls-root .ls-burger:hover { border-color: rgba(240,237,231,.4); }
+.ls-root .ls-burger i {
+  position: absolute; left: 11px; width: 18px; height: 1.5px;
+  background: var(--bone); transition: transform .32s cubic-bezier(.5,0,.2,1), opacity .2s;
+}
+.ls-root .ls-burger i:nth-child(1) { top: 14px; }
+.ls-root .ls-burger i:nth-child(2) { top: 20px; }
+.ls-root .ls-burger i:nth-child(3) { top: 26px; }
+.ls-root .ls-burger[aria-expanded="true"] i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.ls-root .ls-burger[aria-expanded="true"] i:nth-child(2) { opacity: 0; }
+.ls-root .ls-burger[aria-expanded="true"] i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* full-screen menu */
+.ls-root .ls-menu {
+  position: fixed; inset: 0; z-index: 70; background: var(--ink);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 var(--pad); gap: 4px;
+  opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s;
+}
+.ls-root .ls-menu.ls-open { opacity: 1; visibility: visible; }
+.ls-root .ls-menu a {
+  font-size: clamp(2rem, 9vw, 3.4rem); font-weight: 300; letter-spacing: -.02em;
+  padding: 12px 0; border-bottom: 1px solid var(--line-2);
+}
+.ls-root .ls-menu a:last-of-type { border-bottom: 0; }
+.ls-root .ls-menu-close {
+  position: absolute; top: 15px; right: var(--pad);
+  width: 42px; height: 42px; border: 1px solid var(--line); font-size: 1.3rem;
+}
+@media (max-width: 900px) {
+  .ls-root .ls-links, .ls-root .ls-nav .ls-cta { display: none; }
+}
+
+/* =========================================================
+   HERO — photographic diptych, one seam
+   ========================================================= */
+.ls-root .ls-hero { position: relative; }
+.ls-root .ls-diptych {
+  position: relative; display: grid; grid-template-columns: 1fr 1px 1fr;
+  height: clamp(400px, 62vh, 620px);
+}
+.ls-root .ls-pane { position: relative; overflow: hidden; }
+.ls-root .ls-pane::before {
+  content: ""; position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transform: scale(1.03);
+}
+.ls-root .ls-pane--c::before {
+  background-image: var(--img-columbia);
+  filter: saturate(.72) contrast(1.06) brightness(.72) hue-rotate(-4deg);
+}
+.ls-root .ls-pane--s::before {
+  background-image: var(--img-stanford);
+  background-position: center 62%;
+  filter: saturate(.86) contrast(1.04) brightness(.7);
+}
+.ls-root .ls-pane::after {           /* per-side colour wash + legibility scrim */
+  content: ""; position: absolute; inset: 0;
+}
+.ls-root .ls-pane--c::after {
+  background:
+    linear-gradient(180deg, rgba(15,16,20,.62) 0%, rgba(15,16,20,.28) 42%, rgba(15,16,20,.9) 100%),
+    linear-gradient(90deg, rgba(60,110,150,.3), rgba(60,110,150,.05));
+}
+.ls-root .ls-pane--s::after {
+  background:
+    linear-gradient(180deg, rgba(15,16,20,.62) 0%, rgba(15,16,20,.28) 42%, rgba(15,16,20,.9) 100%),
+    linear-gradient(270deg, rgba(150,90,50,.3), rgba(150,90,50,.05));
+}
+.ls-root .ls-seam {
+  position: relative; z-index: 2;
+  background: linear-gradient(180deg, rgba(240,237,231,.06), rgba(240,237,231,.72) 45%, rgba(240,237,231,.06));
+}
+
+.ls-root .ls-hero-copy {
+  position: absolute; inset: 0; z-index: 3;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center; padding: 0 var(--pad);
+}
+.ls-root .ls-hero-copy::before {   /* keeps the title legible over the bright quad */
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: radial-gradient(58% 52% at 50% 47%, rgba(15,16,20,.74), rgba(15,16,20,0) 72%);
+}
+.ls-root .ls-hero-copy .ls-label { color: var(--dim); }
+.ls-root .ls-title {
+  font-size: clamp(2.5rem, 6.6vw, 5.4rem); line-height: .98;
+  font-weight: 300; letter-spacing: -.032em; margin: 22px 0 0; text-wrap: balance;
+  text-shadow: 0 2px 30px rgba(15,16,20,.65);
+}
+.ls-root .ls-title i { font-style: italic; font-weight: 300; }
+.ls-root .ls-sub {
+  margin-top: 20px; font-size: clamp(1rem, 1.5vw, 1.22rem);
+  color: #DAD7D1; max-width: 46ch; text-shadow: 0 1px 16px rgba(15,16,20,.7);
+}
+.ls-root .ls-campus-lock {
+  margin-top: 30px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  justify-content: center; font-family: var(--f-u); font-size: .72rem;
+  font-weight: 600; letter-spacing: .17em; text-transform: uppercase;
+}
+.ls-root .ls-campus-lock .a { color: var(--columbia); }
+.ls-root .ls-campus-lock .b { color: var(--sand); }
+.ls-root .ls-campus-lock em { color: var(--muted); font-family: var(--f-d); font-style: italic;
+  font-size: 1.05rem; letter-spacing: 0; text-transform: none; }
+
+.ls-root .ls-hero-foot {
+  border-bottom: 1px solid var(--line-2);
+  padding: 18px 0; text-align: center;
+}
+.ls-root .ls-hero-foot p {
+  font-family: var(--f-u); font-size: .69rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+
+/* =========================================================
+   STATS
+   ========================================================= */
+.ls-root .ls-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1px; background: var(--line-2); border-bottom: 1px solid var(--line-2);
+}
+.ls-root .ls-stat { background: var(--ink); padding: 34px var(--pad); }
+.ls-root .ls-stat b {
+  display: block; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300;
+  letter-spacing: -.02em; line-height: 1;
+}
+.ls-root .ls-stat span {
+  display: block; margin-top: 11px; font-family: var(--f-u); font-size: .67rem;
+  font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+}
+.ls-root .ls-stat:nth-child(1) b { color: var(--bone); }
+.ls-root .ls-stat:nth-child(2) b { color: var(--columbia); }
+.ls-root .ls-stat:nth-child(3) b { color: var(--sand); }
+.ls-root .ls-stat:nth-child(4) b { color: var(--bone); }
+
+/* =========================================================
+   EDITORIAL TEXT BLOCKS
+   ========================================================= */
+.ls-root .ls-sec { padding: clamp(66px, 9vw, 118px) 0; }
+.ls-root .ls-sec--line { border-top: 1px solid var(--line-2); }
+.ls-root .ls-grid2 {
+  display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr);
+  gap: clamp(22px, 4vw, 64px); align-items: start;
+}
+@media (max-width: 800px) { .ls-root .ls-grid2 { grid-template-columns: 1fr; gap: 16px; } }
+.ls-root .ls-stack { display: grid; gap: clamp(44px, 6vw, 76px); }
+
+/* =========================================================
+   SCROLL-TELLING — one sticky stage, the campuses crossfade
+   beneath a column of beats as you scroll.
+   ========================================================= */
+.ls-root .ls-story { position: relative; }
+
+.ls-root .ls-stage {
+  position: sticky; top: 0; height: 100vh; overflow: hidden; z-index: 0;
+}
+.ls-root .ls-stage-img {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  transition: opacity 1s ease, transform 1.4s ease;
+}
+/* the inactive coast sits fractionally zoomed in; the active one settles */
+.ls-root .ls-stage-img--c {
+  background-image: var(--img-columbia);
+  filter: saturate(.58) brightness(.5) contrast(1.06);
+  opacity: 1; transform: scale(1.05);
+}
+.ls-root .ls-stage-img--s {
+  background-image: var(--img-stanford); background-position: center 60%;
+  filter: saturate(.78) brightness(.5) contrast(1.06);
+  opacity: 0; transform: scale(1.05);
+}
+.ls-root .ls-story[data-campus="columbia"] .ls-stage-img--c { transform: scale(1); }
+.ls-root .ls-story[data-campus="stanford"] .ls-stage-img--c { opacity: 0; }
+.ls-root .ls-story[data-campus="stanford"] .ls-stage-img--s { opacity: 1; transform: scale(1); }
+.ls-root .ls-stage::after {          /* legibility scrim + vignette */
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(128% 108% at 22% 44%, transparent 34%, rgba(9,10,13,.62) 100%),
+    linear-gradient(90deg, rgba(15,16,20,.94) 0%, rgba(15,16,20,.78) 42%, rgba(15,16,20,.42) 100%),
+    linear-gradient(180deg, rgba(15,16,20,.8) 0%, transparent 26%, transparent 74%, rgba(15,16,20,.8) 100%);
+}
+
+/* the heads-up display: place, coordinates, progress meridian */
+.ls-root .ls-hud {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  padding: 0 0 clamp(22px, 3vw, 34px);
+}
+.ls-root .ls-hud-in {
+  max-width: 1240px; margin: 0 auto; padding: 0 var(--pad);
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+}
+.ls-root .ls-hud-place {
+  font-family: var(--f-u); font-size: .68rem; font-weight: 600; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--columbia); transition: color .8s ease;
+}
+.ls-root .ls-story[data-campus="stanford"] .ls-hud-place { color: var(--sand); }
+.ls-root .ls-hud-coord {
+  font-family: var(--f-u); font-size: .64rem; letter-spacing: .1em; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.ls-root .ls-rail {
+  flex: 1 1 140px; min-width: 90px; height: 1px; background: var(--line); position: relative;
+}
+.ls-root .ls-rail i {
+  position: absolute; inset: 0 auto 0 0; display: block; width: 0%;
+  background: linear-gradient(90deg, var(--columbia), var(--sand));
+  transition: width .7s cubic-bezier(.3,.7,.3,1);
+}
+.ls-root .ls-rail::after {   /* one tick per beat, sitting over the fill */
+  content: ""; position: absolute; inset: -3px 0; pointer-events: none;
+  background-image: repeating-linear-gradient(90deg,
+    transparent 0, transparent calc(16.6667% - 1px),
+    rgba(240,237,231,.42) calc(16.6667% - 1px), rgba(240,237,231,.42) 16.6667%);
+}
+.ls-root .ls-hud-count {
+  font-family: var(--f-u); font-size: .64rem; font-weight: 600; letter-spacing: .16em;
+  color: var(--muted); font-variant-numeric: tabular-nums;
+}
+
+/* beats ride over the sticky stage */
+.ls-root .ls-beats { position: relative; z-index: 1; margin-top: -100vh; }
+.ls-root .ls-beat {
+  min-height: 96vh; display: flex; align-items: center;
+}
+.ls-root .ls-beat-in { max-width: 1240px; margin: 0 auto; padding: 0 var(--pad); width: 100%; }
+.ls-root .ls-beat-card { max-width: 560px; }
+.ls-root .ls-beat-n {
+  font-family: var(--f-u); font-size: .64rem; font-weight: 600; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.ls-root .ls-beat-n b { color: var(--columbia); font-weight: 700; transition: color .8s ease; }
+.ls-root .ls-beat[data-campus="stanford"] .ls-beat-n b { color: var(--sand); }
+.ls-root .ls-beat[data-campus="cross"] .ls-beat-n b { color: #C89AA8; }
+.ls-root .ls-beat-rule { width: 40px; height: 1px; background: var(--columbia); margin-bottom: 20px;
+  transition: background .8s ease, width .8s ease; }
+.ls-root .ls-beat[data-campus="stanford"] .ls-beat-rule { background: var(--sand); }
+.ls-root .ls-beat[data-campus="cross"] .ls-beat-rule {
+  width: 92px; background: linear-gradient(90deg, var(--columbia), var(--sand)); }
+.ls-root .ls-beat h3 {
+  font-size: clamp(1.7rem, 3.4vw, 2.7rem); line-height: 1.12; font-weight: 300;
+  letter-spacing: -.02em; text-wrap: balance;
+}
+.ls-root .ls-beat p { margin-top: 18px; color: #D2D0CB; max-width: 52ch; }
+.ls-root .ls-beat--cross h3 { font-style: italic; }
+.ls-root .ls-beat--cross .ls-miles {
+  font-family: var(--f-u); font-size: .68rem; font-weight: 600; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--muted); font-variant-numeric: tabular-nums;
+  display: block; margin-top: 16px;
+}
+/* the ecosystem chain — a real sequence, so it reads as one, linked */
+.ls-root .ls-chain {
+  margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center;
+  max-width: 500px; row-gap: 2px;
+}
+.ls-root .ls-chain li {
+  font-family: var(--f-u); font-size: .645rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--dim);
+}
+.ls-root .ls-chain li:not(:last-child)::after {
+  content: "\203A"; margin: 0 9px; color: var(--muted); font-size: .8rem; vertical-align: -1px;
+}
+.ls-root .ls-chain li:last-child { color: var(--sand); }
+
+/* the stage is decorative scaffolding — collapse it when motion is unwelcome */
+@media (prefers-reduced-motion: reduce) {
+  .ls-root .ls-stage { position: relative; height: 46vh; }
+  .ls-root .ls-beats { margin-top: 0; }
+  .ls-root .ls-beat { min-height: 0; padding: 42px 0; }
+}
+@media (max-width: 860px) {
+  /* Each beat owns a full screen and reserves the HUD strip at the bottom,
+     so a beat can never sit under the place name or the progress rail. */
+  .ls-root .ls-beat {
+    min-height: 100vh; min-height: 100svh;
+    padding: 84px 0 148px; align-items: center;
+  }
+  /* a panel, so the text never has to compete with whatever is in the photograph */
+  .ls-root .ls-beat-card {
+    background: rgba(11,12,16,.6);
+    -webkit-backdrop-filter: blur(12px) saturate(1.1);
+    backdrop-filter: blur(12px) saturate(1.1);
+    border: 1px solid rgba(240,237,231,.09);
+    border-left: 2px solid var(--columbia);
+    padding: 26px 22px 30px;
+  }
+  .ls-root .ls-beat[data-campus="stanford"] .ls-beat-card { border-left-color: var(--sand); }
+  .ls-root .ls-beat[data-campus="cross"] .ls-beat-card { border-left-color: #C89AA8; }
+  .ls-root .ls-beat p { max-width: none; }
+  .ls-root .ls-chain { max-width: none; }
+
+  /* the HUD gets its own ground so it reads against the photograph */
+  .ls-root .ls-hud {
+    padding-top: 54px; padding-bottom: 16px;
+    background: linear-gradient(180deg, transparent, rgba(10,11,15,.92) 62%);
+  }
+  .ls-root .ls-hud-in { gap: 10px 12px; }
+  .ls-root .ls-hud-coord { order: 3; }
+  .ls-root .ls-rail { order: 2; flex-basis: 100%; }
+  .ls-root .ls-stage::after {
+    background:
+      linear-gradient(180deg, rgba(15,16,20,.86) 0%, rgba(15,16,20,.5) 30%, rgba(15,16,20,.55) 62%, rgba(10,11,15,.92) 100%);
+  }
+}
+
+/* nav and hero lockup at phone widths */
+@media (max-width: 620px) {
+  .ls-root .ls-mark span { display: none; }          /* tagline was wrapping out of the bar */
+  .ls-root .ls-nav-in { height: 62px; }
+  .ls-root .ls-mark b { font-size: .78rem; letter-spacing: .2em; }
+  .ls-root .ls-campus-lock { flex-direction: column; gap: 9px; }  /* stop orphaning the ampersand */
+  .ls-root .ls-hero-copy { padding: 0 22px; }
+}
+
+/* =========================================================
+   EVENTS
+   ========================================================= */
+.ls-root .ls-events { display: grid; gap: 1px; background: var(--line-2);
+  border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2);
+  margin-top: clamp(34px, 5vw, 52px); }
+.ls-root .ls-event {
+  background: var(--ink); padding: clamp(26px, 3.4vw, 40px) 0;
+  display: grid; grid-template-columns: 108px minmax(0, 1fr) minmax(0, 300px);
+  gap: clamp(18px, 3vw, 44px); align-items: start;
+  transition: background .3s;
+}
+.ls-root .ls-event:hover { background: var(--ink-2); }
+@media (max-width: 900px) { .ls-root .ls-event { grid-template-columns: 1fr; gap: 14px; } }
+.ls-root .ls-date {
+  font-family: var(--f-u); font-variant-numeric: tabular-nums; line-height: 1.15;
+}
+.ls-root .ls-date b { display: block; font-size: 2.3rem; font-weight: 300; letter-spacing: -.02em; }
+.ls-root .ls-date span {
+  display: block; font-size: .67rem; font-weight: 600; letter-spacing: .19em;
+  text-transform: uppercase; color: var(--muted); margin-top: 5px;
+}
+.ls-root .ls-ev-name { font-size: clamp(1.3rem, 2.1vw, 1.65rem); font-weight: 400; letter-spacing: -.015em; }
+.ls-root .ls-ev-role {
+  margin-top: 7px; font-family: var(--f-u); font-size: .73rem; font-weight: 500;
+  letter-spacing: .04em; color: var(--muted); line-height: 1.55;
+}
+.ls-root .ls-ev-session {
+  margin-top: 16px; font-size: 1.06rem; font-style: italic; color: var(--columbia);
+}
+.ls-root .ls-ev-desc { margin-top: 12px; font-size: .97rem; color: var(--dim); }
+.ls-root .ls-ev-mod {
+  margin-top: 12px; font-family: var(--f-u); font-size: .69rem; letter-spacing: .09em;
+  color: var(--muted); font-weight: 500;
+}
+.ls-root .ls-ev-meta { display: grid; gap: 7px; align-content: start; padding-top: 5px; }
+.ls-root .ls-ev-meta div {
+  font-family: var(--f-u); font-size: .71rem; font-weight: 500; letter-spacing: .1em;
+  color: var(--dim); display: flex; gap: 10px;
+}
+.ls-root .ls-ev-meta div b {
+  color: var(--muted); font-weight: 600; text-transform: uppercase;
+  font-size: .63rem; letter-spacing: .16em; min-width: 54px;
+}
+.ls-root .ls-tag {
+  display: inline-block; margin-top: 6px; padding: 5px 11px; border: 1px solid var(--line);
+  font-family: var(--f-u); font-size: .6rem; font-weight: 600; letter-spacing: .17em;
+  text-transform: uppercase; color: var(--muted); width: max-content;
+}
+
+/* upcoming notice */
+.ls-root .ls-upcoming {
+  border: 1px solid var(--line); padding: clamp(28px, 4vw, 44px);
+  margin-top: clamp(30px, 4vw, 44px); background: var(--ink-2);
+}
+
+/* =========================================================
+   CONNECT
+   ========================================================= */
+.ls-root .ls-connect-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  gap: 1px; background: var(--line-2); margin-top: clamp(34px, 5vw, 52px);
+  border: 1px solid var(--line-2);
+}
+.ls-root .ls-card { background: var(--ink); padding: clamp(26px, 3vw, 34px); }
+.ls-root .ls-card .ls-h3 { margin-bottom: 12px; }
+.ls-root .ls-card p { color: var(--dim); font-size: .98rem; }
+.ls-root .ls-card a.ls-mail {
+  display: inline-block; margin-top: 14px; color: var(--columbia);
+  border-bottom: 1px solid rgba(155,203,235,.4); font-size: .97rem; word-break: break-word;
+}
+.ls-root .ls-card a.ls-mail:hover { border-bottom-color: var(--columbia); }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.ls-root .ls-footer { border-top: 1px solid var(--line-2); padding: clamp(50px, 7vw, 80px) 0 40px; }
+.ls-root .ls-foot-top {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: clamp(26px, 4vw, 54px); padding-bottom: 40px; border-bottom: 1px solid var(--line-2);
+}
+.ls-root .ls-foot-h {
+  font-family: var(--f-u); font-size: .66rem; font-weight: 600; letter-spacing: .19em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+}
+.ls-root .ls-foot-top p, .ls-root .ls-foot-top a { color: var(--dim); font-size: .96rem; }
+.ls-root .ls-foot-top a:hover { color: var(--bone); }
+.ls-root .ls-foot-list { display: grid; gap: 8px; }
+.ls-root .ls-credits { padding-top: 26px; display: grid; gap: 9px; }
+.ls-root .ls-credits p, .ls-root .ls-credits a {
+  font-family: var(--f-u); font-size: .68rem; line-height: 1.7; color: #74767F; letter-spacing: .02em;
+}
+.ls-root .ls-credits a { border-bottom: 1px solid rgba(116,118,127,.4); }
+.ls-root .ls-credits a:hover { color: var(--dim); }
+
+/* ---------- motion ---------- */
+.ls-root.ls-js .ls-rv { opacity: .001; transform: translateY(16px); }
+.ls-root.ls-js .ls-rv.ls-in {
+  opacity: 1; transform: none;
+  transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ls-root.ls-js .ls-rv { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+.ls-root :focus-visible { outline: 2px solid var(--columbia); outline-offset: 3px; }
+</style>
+
+
+<div class="ls-root" id="lsRoot">
+
+  <!-- >>> NAV — DELETE TO KEEP THEME HEADER <<< -->
+  <nav class="ls-nav" aria-label="Primary">
+    <div class="ls-nav-in">
+      <a class="ls-mark" href="/">
+        <b>Leaders Series</b>
+        <span>Conversations with Global Decision-Makers</span>
+      </a>
+      <div class="ls-links">
+        <a href="/">Home</a>
+        <a href="#events">Events</a>
+        <a href="#connect">Connect</a>
+      </div>
+      <a class="ls-cta" href="#events">Check Events</a>
+      <button class="ls-burger" id="lsBurger" aria-expanded="false" aria-controls="lsMenu" aria-label="Open menu">
+        <i></i><i></i><i></i>
+      </button>
+    </div>
+  </nav>
+
+  <div class="ls-menu" id="lsMenu" role="dialog" aria-modal="true" aria-label="Menu">
+    <button class="ls-menu-close" id="lsClose" aria-label="Close menu">&#10005;</button>
+    <a href="/">Home</a>
+    <a href="#events">Events</a>
+    <a href="#connect">Connect</a>
+  </div>
+  <!-- >>> END NAV <<< -->
+
+  <!-- ===================== HERO ===================== -->
+  <header class="ls-hero">
+    <div class="ls-diptych">
+      <div class="ls-pane ls-pane--c"></div>
+      <div class="ls-seam"></div>
+      <div class="ls-pane ls-pane--s"></div>
+
+      <div class="ls-hero-copy">
+        <span class="ls-label">An independent, student-led series</span>
+        <h1 class="ls-title">Conversations with<br><i>Global Decision-Makers</i></h1>
+        <p class="ls-sub">
+          Senior leaders operating at scale — on capital, strategy, and institutional direction.
+        </p>
+        <div class="ls-campus-lock">
+          <span class="a">Columbia University</span>
+          <em>&amp;</em>
+          <span class="b">Stanford University</span>
+        </div>
+      </div>
+    </div>
+    <div class="ls-hero-foot">
+      <p>Supported by the Columbia University School of Professional Studies</p>
+    </div>
+  </header>
+
+  <!-- ===================== STATS ===================== -->
+  <section class="ls-stats">
+    <div class="ls-stat"><b>500+</b><span>Attendees</span></div>
+    <div class="ls-stat"><b>4</b><span>Chief executives convened</span></div>
+    <div class="ls-stat"><b>Global</b><span>Perspective</span></div>
+    <div class="ls-stat"><b>Two</b><span>Campus network</span></div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="ls-sec">
+    <div class="ls-wrap">
+      <div class="ls-stack">
+
+        <div class="ls-grid2 ls-rv">
+          <span class="ls-label">About</span>
+          <div>
+            <h2 class="ls-h2">Bridging leadership and academia.</h2>
+            <p class="ls-body" style="margin-top:22px;">
+              The Leaders Series convenes senior global decision-makers for disciplined,
+              forward-looking conversations on capital, strategy, and institutional direction.
+              Each session features leaders operating at scale — CEOs, founders, chairpersons,
+              and policymakers shaping consequential sectors of the global economy.
+            </p>
+            <p class="ls-body">
+              The aim is to move beyond conventional narratives to examine structural change and
+              inflection points, equipping the audience with clearer strategic judgment and a
+              sharper understanding of where opportunity lies.
+            </p>
+          </div>
+        </div>
+
+        <div class="ls-grid2 ls-rv">
+          <span class="ls-label">Why it matters</span>
+          <div>
+            <p class="ls-body" style="font-size:clamp(1.12rem,1.8vw,1.4rem);color:var(--bone);line-height:1.5;">
+              Opportunity is rarely obvious at the outset. It is defined by those willing to make
+              disciplined decisions before consensus forms.
+            </p>
+            <p class="ls-body" style="margin-top:18px;">
+              Understanding how leaders think and act in those moments provides the entrepreneurial
+              clarity required to build, invest, and move first.
+            </p>
+          </div>
+        </div>
+
+        <div class="ls-grid2 ls-rv">
+          <span class="ls-label">Origin</span>
+          <div>
+            <p class="ls-body">
+              Markets and strategy are widely taught, yet the real moments where opportunity is
+              defined — where risk is taken and capital is committed — remain largely unseen.
+            </p>
+            <p class="ls-body">
+              Maria Cristina Baroudi founded the Leaders Series at Columbia University to make that
+              layer visible, opening access to the judgment and discipline that shape great
+              companies and lasting institutions.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCROLL-TELLING: COLUMBIA → STANFORD ============ -->
+  <section class="ls-story" id="story" data-campus="columbia">
+
+    <div class="ls-stage" aria-hidden="true">
+      <div class="ls-stage-img ls-stage-img--c"></div>
+      <div class="ls-stage-img ls-stage-img--s"></div>
+      <div class="ls-hud">
+        <div class="ls-hud-in">
+          <span class="ls-hud-place" id="lsPlace">Morningside Heights, New York</span>
+          <span class="ls-hud-coord" id="lsCoord">40.8075&deg; N, 73.9626&deg; W</span>
+          <span class="ls-rail"><i id="lsRail"></i></span>
+          <span class="ls-hud-count"><b id="lsIdx">01</b> / 06</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ls-beats">
+
+      <div class="ls-beat" data-campus="columbia" data-place="Morningside Heights, New York" data-coord="40.8075&deg; N, 73.9626&deg; W">
+        <div class="ls-beat-in"><div class="ls-beat-card">
+          <span class="ls-beat-n">Columbia &middot; <b>01</b></span>
+          <div class="ls-beat-rule"></div>
+          <h3>Where the Series began.</h3>
+          <p>
+            Markets and strategy are widely taught, yet the real moments where opportunity is
+            defined — where risk is taken and capital is committed — remain largely unseen.
+            Maria Cristina Baroudi founded the Leaders Series at Columbia University to make that
+            layer visible.
+          </p>
+        </div></div>
+      </div>
+
+      <div class="ls-beat" data-campus="columbia" data-place="Morningside Heights, New York" data-coord="40.8075&deg; N, 73.9626&deg; W">
+        <div class="ls-beat-in"><div class="ls-beat-card">
+          <span class="ls-beat-n">Columbia &middot; <b>02</b></span>
+          <div class="ls-beat-rule"></div>
+          <h3>Built across the whole university.</h3>
+          <p>
+            Supported by the School of Professional Studies and shared across all Columbia schools —
+            Columbia Business School, the Graduate School of Arts and Sciences, the School of
+            Engineering, SIPA, and the Climate School — the Series reflects a cross-disciplinary
+            approach to leadership, finance, technology, and institutional strength.
+          </p>
+        </div></div>
+      </div>
+
+      <div class="ls-beat" data-campus="columbia" data-place="Morningside Heights, New York" data-coord="40.8075&deg; N, 73.9626&deg; W">
+        <div class="ls-beat-in"><div class="ls-beat-card">
+          <span class="ls-beat-n">Columbia &middot; <b>03</b></span>
+          <div class="ls-beat-rule"></div>
+          <h3>Four sitting chief executives, in months.</h3>
+          <p>
+            Rothschild &amp; Co, Deloitte, ACCIONA Energía and Energy Capital Partners — finance,
+            energy and professional services — each session student-moderated, on the record, and
+            open to audience questions.
+          </p>
+        </div></div>
+      </div>
+
+      <div class="ls-beat ls-beat--cross" data-campus="cross" data-place="New York &rarr; California" data-coord="One series, two coasts">
+        <div class="ls-beat-in"><div class="ls-beat-card">
+          <span class="ls-beat-n">The crossing &middot; <b>04</b></span>
+          <div class="ls-beat-rule"></div>
+          <h3>Then the same question travels west.</h3>
+          <span class="ls-miles">&asymp; 2,570 miles</span>
+        </div></div>
+      </div>
+
+      <div class="ls-beat" data-campus="stanford" data-place="Palo Alto, California" data-coord="37.4275&deg; N, 122.1697&deg; W">
+        <div class="ls-beat-in"><div class="ls-beat-card">
+          <span class="ls-beat-n">Stanford &middot; <b>05</b></span>
+          <div class="ls-beat-rule"></div>
+          <h3>One ecosystem, followed end to end.</h3>
+          <p>
+            In the heart of Silicon Valley the Series turns to the integrated AI and semiconductor
+            ecosystem. Each speaker illuminates one layer — because a constraint in one part of the
+            chain reshapes every part downstream.
+          </p>
+          <ol class="ls-chain">
+            <li>Critical minerals</li><li>Equipment</li><li>Fabrication</li>
+            <li>Processors &amp; memory</li><li>Networking</li><li>Power</li>
+            <li>Data centers</li><li>Cloud</li><li>AI systems</li>
+          </ol>
+        </div></div>
+      </div>
+
+      <div class="ls-beat" data-campus="stanford" data-place="Palo Alto, California" data-coord="37.4275&deg; N, 122.1697&deg; W">
+        <div class="ls-beat-in"><div class="ls-beat-card">
+          <span class="ls-beat-n">Stanford &middot; <b>06</b></span>
+          <div class="ls-beat-rule"></div>
+          <h3>Where the question gets harder.</h3>
+          <p>
+            Technological leadership takes more than invention. It also requires the ability to
+            manufacture, finance, power, deploy and scale innovation in global markets — and that is
+            what every conversation returns to, from a different position in the chain.
+          </p>
+        </div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== EVENTS ===================== -->
+  <section class="ls-sec ls-sec--line" id="events">
+    <div class="ls-wrap">
+      <div class="ls-rv">
+        <span class="ls-label">Events calendar</span>
+        <h2 class="ls-h2" style="margin-top:16px;max-width:20ch;">Past conversations.</h2>
+      </div>
+
+      <div class="ls-events ls-rv">
+
+      <article class="ls-event">
+        <div class="ls-date"><b>09</b><span>Apr 2026</span></div>
+        <div>
+          <h3 class="ls-ev-name">Joseph B. Ucuzoglu</h3>
+          <p class="ls-ev-role">Global Chief Executive Officer, Deloitte</p>
+          <p class="ls-ev-session">Inside Global Leadership: Decisions at Scale</p>
+          <p class="ls-ev-desc">
+            A conversation on leading a global professional services organisation — how decisions
+            are made at scale, and what holds an institution together across markets.
+          </p>
+          <p class="ls-ev-mod">Moderated by Maria Cristina Baroudi.</p>
+        </div>
+        <div class="ls-ev-meta">
+          <div><b>Format</b><span>Online | Live</span></div>
+          <div><b>Sector</b><span>Consulting</span></div>
+          <span class="ls-tag">Recap available</span>
+        </div>
+      </article>
+
+      <article class="ls-event">
+        <div class="ls-date"><b>26</b><span>Feb 2026</span></div>
+        <div>
+          <h3 class="ls-ev-name">Doug Kimmelman</h3>
+          <p class="ls-ev-role">Founder and Executive Chairman, Energy Capital Partners (ECP)</p>
+          <p class="ls-ev-session">Scale Infrastructure. Capture Returns.</p>
+          <p class="ls-ev-desc">
+            This conversation examines how ECP underwrites power investments to generate outsized
+            returns, where value is created across the investment lifecycle, and what distinguishes
+            compounding infrastructure platforms from stranded capital.
+          </p>
+          <p class="ls-ev-mod">Moderated by Maria Cristina Baroudi.</p>
+        </div>
+        <div class="ls-ev-meta">
+          <div><b>Time</b><span>01:00 PM EST</span></div>
+          <div><b>Format</b><span>Online | Live</span></div>
+          <div><b>Sector</b><span>Energy</span></div>
+        </div>
+      </article>
+
+      <article class="ls-event">
+        <div class="ls-date"><b>19</b><span>Feb 2026</span></div>
+        <div>
+          <h3 class="ls-ev-name">Rafael Mateo Alcalá</h3>
+          <p class="ls-ev-role">Leading global energy executive; former Chief Executive, Acciona Energía</p>
+          <p class="ls-ev-session">Power Markets: What&rsquo;s Broken, Who Wins</p>
+          <p class="ls-ev-desc">
+            The discussion addresses what is broken in today&rsquo;s power markets, where capital is
+            being misallocated, where real opportunity lies, and which decisions will create
+            long-term winners versus quietly destroy value.
+          </p>
+          <p class="ls-ev-mod">Moderated by Maria Cristina Baroudi.</p>
+        </div>
+        <div class="ls-ev-meta">
+          <div><b>Time</b><span>11:45 AM EST</span></div>
+          <div><b>Format</b><span>Online | Live</span></div>
+          <div><b>Sector</b><span>Energy</span></div>
+        </div>
+      </article>
+
+      <article class="ls-event">
+        <div class="ls-date"><b>05</b><span>Feb 2026</span></div>
+        <div>
+          <h3 class="ls-ev-name">Alexandre de Rothschild</h3>
+          <p class="ls-ev-role">Executive Chairman, Rothschild &amp; Co</p>
+          <p class="ls-ev-session">Strategy and Long-Term Sustainable Value Creation</p>
+          <p class="ls-ev-desc">
+            The discussion examined the evolving role of global advisory institutions within
+            today&rsquo;s financial landscape, sustainability as a driver of value creation from
+            principles to execution, competitive dynamics in advisory and capital allocation, and the
+            integration of AI within financial institutions — closing with guidance for the next
+            generation entering finance.
+          </p>
+          <p class="ls-ev-mod">Moderated by Maria Cristina Baroudi.</p>
+        </div>
+        <div class="ls-ev-meta">
+          <div><b>Time</b><span>11:00 AM EST</span></div>
+          <div><b>Format</b><span>Online | Live</span></div>
+          <div><b>Sector</b><span>Finance</span></div>
+        </div>
+      </article>
+
+      </div>
+
+      <div class="ls-upcoming ls-rv">
+        <span class="ls-label">Upcoming</span>
+        <h3 class="ls-h3" style="margin-top:12px;">
+          Our next conversation with a global decision-maker is currently being scheduled.
+        </h3>
+        <p class="ls-body" style="margin-top:12px;">
+          Join the Leaders Series mailing list to receive advance notice of upcoming sessions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONNECT ===================== -->
+  <section class="ls-sec ls-sec--line" id="connect">
+    <div class="ls-wrap">
+      <div class="ls-rv">
+        <span class="ls-label">Connect</span>
+        <h2 class="ls-h2" style="margin-top:16px;max-width:22ch;">Take part in the Series.</h2>
+      </div>
+
+      <div class="ls-connect-grid ls-rv">
+        <div class="ls-card">
+          <h3 class="ls-h3">Stay informed</h3>
+          <p>
+            Receive updates on upcoming Leaders Series sessions, confirmed speakers, and emerging
+            themes across capital, technology, energy, and global strategy.
+          </p>
+        </div>
+        <div class="ls-card">
+          <h3 class="ls-h3">Speaker interest</h3>
+          <p>
+            If you are a C-suite executive, founder, global head, or institutional leader interested
+            in participating in a future session, please submit a brief profile and area of focus.
+          </p>
+        </div>
+        <div class="ls-card">
+          <h3 class="ls-h3">Sponsorship &amp; partnerships</h3>
+          <p>
+            We welcome select institutional partners aligned with long-term capital, innovation, and
+            leadership development. For sponsorship inquiries, collaboration proposals, or
+            institutional partnerships:
+          </p>
+          <a class="ls-mail" href="mailto:Christinabaroudi@gmail.com">Christinabaroudi@gmail.com</a>
+        </div>
+        <div class="ls-card">
+          <h3 class="ls-h3">Work with the Series</h3>
+          <p>
+            The Leaders Series selectively engages graduate students interested in research support,
+            strategy, and event execution. Applications are reviewed on a rolling basis.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="ls-footer">
+    <div class="ls-wrap">
+      <div class="ls-foot-top">
+        <div>
+          <div class="ls-foot-h">Leaders Series</div>
+          <p>Conversations with Global Decision-Makers.<br>An independent, student-led series.</p>
+        </div>
+        <div>
+          <div class="ls-foot-h">Navigate</div>
+          <div class="ls-foot-list">
+            <a href="/">Home</a>
+            <a href="#events">Events</a>
+            <a href="#connect">Connect</a>
+          </div>
+        </div>
+        <div>
+          <div class="ls-foot-h">Contact</div>
+          <div class="ls-foot-list">
+            <a href="mailto:Christinabaroudi@gmail.com">Christinabaroudi@gmail.com</a>
+          </div>
+        </div>
+        <div>
+          <div class="ls-foot-h">Institutional</div>
+          <p>Supported by the Columbia University School of Professional Studies.</p>
+        </div>
+      </div>
+
+      <div class="ls-credits">
+        <p>&copy; 2026 Leaders Series. All rights reserved.</p>
+        <p>
+          Photograph of Low Memorial Library by Magpieturtle, licensed
+          <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener">CC BY 4.0</a>
+          via <a href="https://commons.wikimedia.org/wiki/File:Low_Memorial_Library_at_Columbia_University_12-17-2025.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>.
+          Photograph of the Stanford Main Quad by Jawed, licensed
+          <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>
+          via <a href="https://commons.wikimedia.org/wiki/File:Stanford_University_Arches_with_Memorial_Church_in_the_background.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('lsRoot');
+  if (!root) return;
+
+  /* ---- menu ---- */
+  var burger = document.getElementById('lsBurger'),
+      menu   = document.getElementById('lsMenu'),
+      close  = document.getElementById('lsClose');
+
+  function setMenu(open) {
+    if (!menu || !burger) return;
+    menu.classList.toggle('ls-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open && close) close.focus();
+    else if (!open) burger.focus();
+  }
+  if (burger) burger.addEventListener('click', function () {
+    setMenu(menu.classList.contains('ls-open') === false);
+  });
+  if (close) close.addEventListener('click', function () { setMenu(false); });
+  if (menu) menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { setMenu(false); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu && menu.classList.contains('ls-open')) setMenu(false);
+  });
+
+  /* ---- scroll-telling: the beat nearest the middle of the screen drives
+          the stage, the place name, the coordinates and the progress rail ---- */
+  (function () {
+    var story = document.getElementById('story');
+    if (!story) return;
+    var beats = [].slice.call(story.querySelectorAll('.ls-beat'));
+    if (!beats.length) return;
+
+    var placeEl = document.getElementById('lsPlace'),
+        coordEl = document.getElementById('lsCoord'),
+        railEl  = document.getElementById('lsRail'),
+        idxEl   = document.getElementById('lsIdx'),
+        current = -1, queued = false;
+
+    function apply(i) {
+      if (i === current) return;
+      current = i;
+      var b = beats[i];
+      // the stage only knows two states; the crossing keeps the coast it came from
+      var campus = b.getAttribute('data-campus');
+      if (campus !== 'cross') story.setAttribute('data-campus', campus);
+      if (placeEl) placeEl.innerHTML = b.getAttribute('data-place') || '';
+      if (coordEl) coordEl.innerHTML = b.getAttribute('data-coord') || '';
+      if (railEl)  railEl.style.width = (((i + 1) / beats.length) * 100).toFixed(1) + '%';
+      if (idxEl)   idxEl.textContent = ('0' + (i + 1)).slice(-2);
+    }
+
+    function update() {
+      queued = false;
+      var mid = (window.innerHeight || 800) / 2, best = 0, bestD = Infinity;
+      for (var i = 0; i < beats.length; i++) {
+        var r = beats[i].getBoundingClientRect();
+        var d = Math.abs((r.top + r.bottom) / 2 - mid);
+        if (d < bestD) { bestD = d; best = i; }
+      }
+      apply(best);
+    }
+    window.addEventListener('scroll', function () {
+      if (!queued) { queued = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();   // settle on beat 01 at rest, before any scrolling
+  })();
+
+  /* ---- reveals (progressive enhancement: visible without JS) ---- */
+  root.classList.add('ls-js');
+  var t = root.querySelectorAll('.ls-rv');
+  function show(x) { x.classList.add('ls-in'); }
+
+  if (!('IntersectionObserver' in window)) {
+    t.forEach(show);
+  } else {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+    var vh = window.innerHeight || 800;
+    t.forEach(function (x) {
+      // Anything already at or above the fold is shown immediately rather than
+      // waiting to be scrolled into view — otherwise a deep link (#events) or a
+      // restored scroll position leaves every section above it invisible.
+      if (x.getBoundingClientRect().top < vh * 1.05) show(x);
+      else io.observe(x);
+    });
+  }
+})();
+</script>
