@@ -1401,8 +1401,10 @@
           .then(function (r) {
             if (!r.ok) throw new Error('HTTP ' + r.status);
             form.reset();
+            // FormSubmit does not send an auto-response to AJAX submissions,
+            // so don't promise the sender a confirmation email
             note(form, 'Thank you — your details have been received. ' +
-                       'A confirmation email is on its way.', 'ok');
+                       'We will be in touch.', 'ok');
           })
           .catch(function () {
             note(form,
