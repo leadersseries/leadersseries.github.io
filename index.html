@@ -512,13 +512,12 @@
   border-bottom: 1px solid var(--line-2);
 }
 .ls-root .ls-logos img {
-  height: 26px; width: auto; display: block;
-  /* every mark is a different colour; flatten them all to one bone-white
-     so the row reads as a set rather than five competing brands */
-  filter: brightness(0) invert(1);
-  opacity: .55; transition: opacity .3s ease;
+  height: 28px; width: auto; display: block;
+  /* shown in each brand's own colours — the files are the reversed
+     (on-dark) versions, so they read against the near-black ground */
+  opacity: .88; transition: opacity .3s ease;
 }
-.ls-root .ls-logos img:hover { opacity: .95; }
+.ls-root .ls-logos img:hover { opacity: 1; }
 .ls-root .ls-logos img.ls-logo--tall { height: 34px; }
 
 .ls-root .ls-filter {

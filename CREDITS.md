@@ -60,5 +60,9 @@ placed anywhere implying the company sponsors the Series.
 | Energy Capital Partners | `energy-capital-partners.png` | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Energy_Capital_Partners.png), public domain |
 | Ariel Investments | `ariel-investments.svg` | wordmark from arielinvestments.com, recomposed as a standalone SVG |
 
-All are rendered flat bone-white via CSS (`brightness(0) invert(1)`), so no
-brand colour is reproduced on the page.
+Each is shown in its own brand colours, using the reversed (on-dark) version of
+the mark so it reads against the near-black ground. Two adjustments were needed:
+the Deloitte file had its green dot flattened to white, which is restored to
+#86BC25; and the ECP mark was navy-on-navy, so its wordmark is reversed to
+bone-white with the mark lightened for contrast. Rothschild & Co and Ariel
+Investments are monochrome marks and are unaltered.
