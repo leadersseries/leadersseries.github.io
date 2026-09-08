@@ -491,11 +491,34 @@
    COMPANY LOGOS + SECTOR FILTER
    ========================================================= */
 .ls-root .ls-logos {
-  display: flex; align-items: center; flex-wrap: wrap;
-  gap: clamp(26px, 4vw, 54px);
   margin-top: clamp(30px, 4vw, 44px);
   padding-bottom: clamp(28px, 4vw, 40px);
   border-bottom: 1px solid var(--line-2);
+  overflow: hidden;
+  /* fade both ends so marks enter and leave rather than being cut off */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.ls-root .ls-logos-track {
+  display: flex; align-items: center; width: max-content;
+  gap: clamp(26px, 4vw, 54px);
+  padding-right: clamp(26px, 4vw, 54px);   /* keeps the seam evenly spaced */
+  animation: ls-marquee 38s linear infinite;
+  will-change: transform;
+}
+/* the track holds the set twice; travelling from -50% to 0 moves the marks
+   left to right, and the duplicate makes the wrap invisible */
+@keyframes ls-marquee {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.ls-root .ls-logos:hover .ls-logos-track,
+.ls-root .ls-logos:focus-within .ls-logos-track { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* no drift — let the row be scrolled by hand instead */
+  .ls-root .ls-logos { overflow-x: auto; }
+  .ls-root .ls-logos-track { animation: none; }
 }
 .ls-root .ls-logos img {
   height: 28px; width: auto; display: block;
@@ -893,11 +916,18 @@
         <h2 class="ls-h2" style="margin-top:16px;max-width:20ch;">Past conversations.</h2>
 
         <div class="ls-logos" aria-label="Companies represented">
-          <img src="https://leadersseries.com/wp-content/uploads/2026/09/rothschild.png" alt="Rothschild &amp; Co" loading="lazy">
-          <img src="https://leadersseries.com/wp-content/uploads/2026/09/deloitte.png" alt="Deloitte" loading="lazy">
-          <img src="https://leadersseries.com/wp-content/uploads/2026/09/acciona-energia.png" alt="ACCIONA Energía" class="ls-logo--tall" loading="lazy">
-          <img src="https://leadersseries.com/wp-content/uploads/2026/09/energy-capital-partners.png" alt="Energy Capital Partners" class="ls-logo--tall" loading="lazy">
-          <img src="https://leadersseries.com/wp-content/uploads/2026/09/ariel-investments.svg" alt="Ariel Investments" class="ls-logo--tall" loading="lazy">
+          <div class="ls-logos-track">
+            <img src="https://leadersseries.com/wp-content/uploads/2026/09/rothschild.png" alt="Rothschild &amp; Co">
+            <img src="https://leadersseries.com/wp-content/uploads/2026/09/deloitte.png" alt="Deloitte">
+            <img src="https://leadersseries.com/wp-content/uploads/2026/09/acciona-energia.png" alt="ACCIONA Energía" class="ls-logo--tall">
+            <img src="https://leadersseries.com/wp-content/uploads/2026/09/energy-capital-partners.png" alt="Energy Capital Partners" class="ls-logo--tall">
+            <img src="https://leadersseries.com/wp-content/uploads/2026/09/ariel-investments.svg" alt="Ariel Investments" class="ls-logo--tall">
+            <img aria-hidden="true" src="https://leadersseries.com/wp-content/uploads/2026/09/rothschild.png" alt="Rothschild &amp; Co">
+            <img aria-hidden="true" src="https://leadersseries.com/wp-content/uploads/2026/09/deloitte.png" alt="Deloitte">
+            <img aria-hidden="true" src="https://leadersseries.com/wp-content/uploads/2026/09/acciona-energia.png" alt="ACCIONA Energía" class="ls-logo--tall">
+            <img aria-hidden="true" src="https://leadersseries.com/wp-content/uploads/2026/09/energy-capital-partners.png" alt="Energy Capital Partners" class="ls-logo--tall">
+            <img aria-hidden="true" src="https://leadersseries.com/wp-content/uploads/2026/09/ariel-investments.svg" alt="Ariel Investments" class="ls-logo--tall">
+          </div>
         </div>
 
         <div class="ls-filter" id="lsFilter" role="group" aria-label="Filter sessions by sector">
