@@ -636,6 +636,10 @@
 .ls-root .ls-submit[disabled] { opacity: .45; cursor: default; }
 .ls-root .ls-signup-form .ls-submit { flex: 0 0 auto; }
 
+.ls-root .ls-honey {
+  position: absolute !important; left: -9999px !important;
+  width: 1px; height: 1px; opacity: 0; pointer-events: none;
+}
 .ls-root .ls-note {
   margin-top: 14px; font-family: var(--f-u); font-size: .74rem; line-height: 1.6;
   padding: 12px 14px; border-left: 2px solid var(--muted); color: var(--dim);
@@ -1091,7 +1095,10 @@
             themes across capital, technology, energy, and global strategy.
           </p>
         </div>
-        <form class="ls-signup-form ls-form" data-endpoint="" data-kind="Stay informed" novalidate>
+        <form class="ls-signup-form ls-form" data-endpoint="https://formsubmit.co/ajax/Christinabaroudi@gmail.com" data-kind="Stay informed" novalidate>
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off"
+                   aria-hidden="true" class="ls-honey">
+            <input type="hidden" name="_subject" value="Leaders Series — Stay informed">
           <label class="ls-field" style="flex:1 1 220px;margin:0;">
             <span class="ls-sr-only" hidden>Email address</span>
             <input class="ls-input" type="email" name="email" required
@@ -1111,7 +1118,10 @@
             interested in participating in a future session, submit a brief profile and area
             of focus.
           </p>
-          <form class="ls-form" data-endpoint="" data-kind="Speaker interest" novalidate>
+          <form class="ls-form" data-endpoint="https://formsubmit.co/ajax/Christinabaroudi@gmail.com" data-kind="Speaker interest" novalidate>
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off"
+                   aria-hidden="true" class="ls-honey">
+            <input type="hidden" name="_subject" value="Leaders Series — Speaker interest">
             <div class="ls-grid-2">
               <label class="ls-field"><span>First name <b>*</b></span>
                 <input class="ls-input" type="text" name="first_name" required autocomplete="given-name"></label>
@@ -1140,7 +1150,14 @@
             The Leaders Series selectively engages graduate students interested in research
             support, strategy, and event execution. Applications are reviewed on a rolling basis.
           </p>
-          <form class="ls-form" data-endpoint="" data-kind="Work with the Series" novalidate>
+          <form class="ls-form" data-native="1" method="POST" enctype="multipart/form-data"
+                action="https://formsubmit.co/Christinabaroudi@gmail.com" data-kind="Work with the Series">
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off"
+                   aria-hidden="true" class="ls-honey">
+            <input type="hidden" name="_subject" value="Leaders Series — Work with the Series">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="__SITE_URL__#connect">
             <div class="ls-grid-2">
               <label class="ls-field"><span>Full name <b>*</b></span>
                 <input class="ls-input" type="text" name="full_name" required autocomplete="name"></label>
@@ -1156,7 +1173,7 @@
             <label class="ls-field"><span>Curriculum vitae <b>*</b></span>
               <input class="ls-input" type="file" name="cv" required
                      accept=".pdf,.doc,.docx,application/pdf"></label>
-            <p class="ls-hint">PDF or Word, up to 10 MB.</p>
+            <p class="ls-hint">PDF or Word, up to 10 MB. Submitting opens a confirmation page and returns you here.</p>
             <button class="ls-submit" type="submit">Submit application</button>
             <p class="ls-note" data-note hidden></p>
           </form>
@@ -1335,6 +1352,9 @@
 
     [].forEach.call(root.querySelectorAll('.ls-form'), function (form) {
       form.addEventListener('submit', function (e) {
+        // the CV form carries a file: attachments only work on FormSubmit's
+        // standard endpoint, so let the browser post it rather than fetch()
+        if (form.hasAttribute('data-native')) return;
         e.preventDefault();
 
         if (!form.checkValidity()) {

@@ -34,6 +34,11 @@ DIST = ROOT / "dist"
 # change this to whatever the Media library shows as the File URL.
 WP_MEDIA_BASE = "https://leadersseries.com/wp-content/uploads/2026/09/"
 
+# Where the CV form returns after FormSubmit accepts it (its _next field needs
+# an absolute URL, which differs per deployment).
+SITE_URL = "https://leadersseries.github.io/"
+WP_SITE_URL = "https://leadersseries.com/"
+
 COLUMBIA = "columbia-low-memorial-library.jpg"
 STANFORD = "stanford-main-quad.jpg"
 
@@ -81,8 +86,9 @@ def data_uri(name: str) -> str:
 
 
 def render(template: str, columbia: str, stanford: str, preloads: str = "",
-           logo_base: str = "") -> str:
-    out = template.replace("__IMG_COLUMBIA__", columbia)
+           logo_base: str = "", site_url: str = SITE_URL) -> str:
+    out = template.replace("__SITE_URL__", site_url)
+    out = out.replace("__IMG_COLUMBIA__", columbia)
     out = out.replace("__IMG_STANFORD__", stanford)
     out = out.replace("__LOGO_BASE__", logo_base)
     return out.replace("<!--__PRELOADS__-->", preloads)
@@ -132,6 +138,7 @@ def main() -> int:
         WP_MEDIA_BASE + STANFORD,
         preload_tags(WP_MEDIA_BASE + COLUMBIA, WP_MEDIA_BASE + STANFORD),
         logo_base=WP_MEDIA_BASE,
+        site_url=WP_SITE_URL,
     )
     (DIST / "wordpress.html").write_text(wp, encoding="utf-8")
 
@@ -147,7 +154,8 @@ def main() -> int:
     # the standalone build must not smuggle in an absolute path to the author's
     # machine or to WordPress -- it has to work from any directory it is served
     body = (ROOT / "index.html").read_text(encoding="utf-8")
-    for bad in ("leadersseries.com/wp-content", "/Users/", "file://", "__LOGO_BASE__"):
+    for bad in ("leadersseries.com/wp-content", "/Users/", "file://",
+                "__LOGO_BASE__", "__SITE_URL__"):
         if bad in body:
             print(f"error: dist/index.html leaks {bad!r}", file=sys.stderr)
             return 1
