@@ -1,0 +1,85 @@
+<!-- Landing page for FormSubmit's _next redirect after the application form.
+     A plain URL with no fragment: FormSubmit falls back to its own confirmation
+     page when _next carries an anchor. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=Archivo:wght@500;600;700&display=swap">
+
+<style>
+  :root {
+    --ink: #0F1014; --bone: #F0EDE7; --dim: #B6B8C2; --muted: #8E909B;
+    --columbia: #9BCBEB; --sand: #C9A66B; --line: rgba(240,237,231,.13);
+    --f-d: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --f-u: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: var(--ink); color: var(--bone);
+    font-family: var(--f-d); font-size: 17px; line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    display: flex; align-items: center; justify-content: center;
+    padding: clamp(28px, 6vw, 72px);
+  }
+  main { max-width: 620px; width: 100%; }
+  .mark {
+    font-family: var(--f-u); font-size: .8rem; font-weight: 700;
+    letter-spacing: .24em; text-transform: uppercase; display: block;
+  }
+  .mark small {
+    display: block; margin-top: 7px; font-size: .58rem; font-weight: 500;
+    letter-spacing: .17em; color: var(--muted);
+  }
+  .rule {
+    width: 46px; height: 1px; margin: clamp(32px, 6vw, 52px) 0 26px;
+    background: linear-gradient(90deg, var(--columbia), var(--sand));
+  }
+  h1 {
+    margin: 0; font-size: clamp(2rem, 5.4vw, 3.1rem); font-weight: 300;
+    line-height: 1.1; letter-spacing: -.022em; text-wrap: balance;
+  }
+  p { color: var(--dim); max-width: 54ch; }
+  p + p { margin-top: 1em; }
+  .next {
+    margin-top: clamp(30px, 4vw, 42px); padding-top: 24px;
+    border-top: 1px solid var(--line);
+  }
+  .next h2 {
+    margin: 0 0 10px; font-family: var(--f-u); font-size: .67rem; font-weight: 600;
+    letter-spacing: .19em; text-transform: uppercase; color: var(--muted);
+  }
+  a.back {
+    display: inline-block; margin-top: clamp(28px, 4vw, 40px);
+    font-family: var(--f-u); font-size: .72rem; font-weight: 600;
+    letter-spacing: .15em; text-transform: uppercase; text-decoration: none;
+    color: var(--bone); border: 1px solid var(--line); padding: 12px 22px;
+    transition: background .25s, color .25s, border-color .25s;
+  }
+  a.back:hover, a.back:focus-visible {
+    background: var(--bone); border-color: var(--bone); color: var(--ink);
+  }
+  a.mail { color: var(--columbia); text-decoration: none; border-bottom: 1px solid rgba(155,203,235,.4); }
+  :focus-visible { outline: 2px solid var(--columbia); outline-offset: 3px; }
+</style>
+
+<main>
+  <span class="mark">Leaders Series<small>Conversations with Global Decision-Makers</small></span>
+
+  <div class="rule"></div>
+
+  <h1>Thank you — we have your application.</h1>
+
+  <p>
+    Your details and CV have been received. Applications are reviewed on a rolling
+    basis, and we will be in touch if there is a fit with current openings.
+  </p>
+
+  <div class="next">
+    <h2>If you need to reach us</h2>
+    <p>
+      Write to <a class="mail" href="mailto:__MAIL__">__MAIL__</a> and quote the
+      program you applied from.
+    </p>
+  </div>
+
+  <a class="back" href="__SITE_URL__">Return to the Leaders Series</a>
+</main>

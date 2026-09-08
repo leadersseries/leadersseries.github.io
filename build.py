@@ -25,6 +25,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).parent
 SRC = ROOT / "src" / "template.html"
+THANKS_SRC = ROOT / "src" / "thanks.html"
 IMAGES = ROOT / "images"
 DIST = ROOT / "dist"
 
@@ -38,6 +39,12 @@ WP_MEDIA_BASE = "https://leadersseries.com/wp-content/uploads/2026/09/"
 # an absolute URL, which differs per deployment).
 SITE_URL = "https://leadersseries.github.io/"
 WP_SITE_URL = "https://leadersseries.com/"
+
+# FormSubmit falls back to its own confirmation page when _next carries a URL
+# fragment, so the application form redirects to a real page instead.
+THANKS_URL = SITE_URL + "thanks.html"
+WP_THANKS_URL = WP_SITE_URL          # no such page on WordPress; land on the site
+MAIL = "Christinabaroudi@gmail.com"
 
 COLUMBIA = "columbia-low-memorial-library.jpg"
 STANFORD = "stanford-main-quad.jpg"
@@ -54,7 +61,7 @@ DESCRIPTION = (
 )
 
 
-def document(fragment: str) -> str:
+def document(fragment: str, title: str = TITLE) -> str:
     """Wrap the fragment in a real HTML document.
 
     The viewport meta is not optional: without it a phone renders the page at
@@ -65,9 +72,9 @@ def document(fragment: str) -> str:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{TITLE}</title>
+<title>{title}</title>
 <meta name="description" content="{DESCRIPTION}">
-<meta property="og:title" content="{TITLE}">
+<meta property="og:title" content="{title}">
 <meta property="og:description" content="{DESCRIPTION}">
 <meta property="og:type" content="website">
 <meta name="color-scheme" content="dark">
@@ -86,8 +93,10 @@ def data_uri(name: str) -> str:
 
 
 def render(template: str, columbia: str, stanford: str, preloads: str = "",
-           logo_base: str = "", site_url: str = SITE_URL) -> str:
-    out = template.replace("__SITE_URL__", site_url)
+           logo_base: str = "", site_url: str = SITE_URL,
+           thanks_url: str = THANKS_URL) -> str:
+    out = template.replace("__THANKS_URL__", thanks_url)
+    out = out.replace("__SITE_URL__", site_url)
     out = out.replace("__IMG_COLUMBIA__", columbia)
     out = out.replace("__IMG_STANFORD__", stanford)
     out = out.replace("__LOGO_BASE__", logo_base)
@@ -139,6 +148,7 @@ def main() -> int:
         preload_tags(WP_MEDIA_BASE + COLUMBIA, WP_MEDIA_BASE + STANFORD),
         logo_base=WP_MEDIA_BASE,
         site_url=WP_SITE_URL,
+        thanks_url=WP_THANKS_URL,
     )
     (DIST / "wordpress.html").write_text(wp, encoding="utf-8")
 
@@ -148,7 +158,13 @@ def main() -> int:
                                  logo_base="__LOGO_BASE__"))
     (DIST / "single-file.html").write_text(document(single), encoding="utf-8")
 
-    for f in [ROOT / "index.html", *sorted(DIST.iterdir())]:
+    # 4. the page FormSubmit redirects to after an application
+    thanks = THANKS_SRC.read_text(encoding="utf-8")
+    thanks = thanks.replace("__SITE_URL__", SITE_URL).replace("__MAIL__", MAIL)
+    (ROOT / "thanks.html").write_text(
+        document(thanks, title="Application received"), encoding="utf-8")
+
+    for f in [ROOT / "index.html", ROOT / "thanks.html", *sorted(DIST.iterdir())]:
         print(f"  {f.relative_to(ROOT)}  {f.stat().st_size:>9,} bytes")
 
     # the standalone build must not smuggle in an absolute path to the author's
