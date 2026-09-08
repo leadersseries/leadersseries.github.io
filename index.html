@@ -651,6 +651,9 @@
 .ls-root .ls-submit[disabled] { opacity: .45; cursor: default; }
 .ls-root .ls-signup-form .ls-submit { flex: 0 0 auto; }
 
+.ls-root .ls-sink {
+  position: absolute; width: 0; height: 0; border: 0; visibility: hidden;
+}
 .ls-root .ls-honey {
   position: absolute !important; left: -9999px !important;
   width: 1px; height: 1px; opacity: 0; pointer-events: none;
@@ -1166,13 +1169,13 @@
             support, strategy, and event execution. Applications are reviewed on a rolling basis.
           </p>
           <form class="ls-form" data-native="1" method="POST" enctype="multipart/form-data"
-                action="https://formsubmit.co/Christinabaroudi@gmail.com" data-kind="Work with the Series">
+                action="https://formsubmit.co/Christinabaroudi@gmail.com"
+                target="lsUploadSink" data-kind="Work with the Series">
             <input type="text" name="_honey" tabindex="-1" autocomplete="off"
                    aria-hidden="true" class="ls-honey">
             <input type="hidden" name="_subject" value="Leaders Series — Work with the Series">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://leadersseries.github.io/thanks.html">
             <div class="ls-grid-2">
               <label class="ls-field"><span>Full name <b>*</b></span>
                 <input class="ls-input" type="text" name="full_name" required autocomplete="name"></label>
@@ -1210,6 +1213,9 @@
     </div>
   </section>
 
+
+      <iframe name="lsUploadSink" id="lsUploadSink" class="ls-sink"
+              title="Application upload target" aria-hidden="true" tabindex="-1"></iframe>
   <!-- ===================== FOOTER ===================== -->
   <footer class="ls-footer">
     <div class="ls-wrap">
@@ -1367,9 +1373,38 @@
 
     [].forEach.call(root.querySelectorAll('.ls-form'), function (form) {
       form.addEventListener('submit', function (e) {
-        // the CV form carries a file: attachments only work on FormSubmit's
-        // standard endpoint, so let the browser post it rather than fetch()
-        if (form.hasAttribute('data-native')) return;
+        // The CV form carries a file. Attachments only work on FormSubmit's
+        // standard endpoint, and that endpoint ignores _next, so it posts
+        // natively into a hidden iframe: the attachment survives and the
+        // visitor never leaves the page. Native validation has already passed
+        // by the time a submit event fires, so this only runs on a valid form.
+        if (form.hasAttribute('data-native')) {
+          var sink = document.getElementById('lsUploadSink');
+          var nbtn = form.querySelector('.ls-submit');
+          var nlabel = nbtn ? nbtn.textContent : '';
+          if (nbtn) { nbtn.disabled = true; nbtn.textContent = 'Sending…'; }
+          note(form, 'Sending…');
+          var settled = false;
+          var finish = function (ok) {
+            if (settled) return;
+            settled = true;
+            if (sink) sink.removeEventListener('load', onDone);
+            if (nbtn) { nbtn.disabled = false; nbtn.textContent = nlabel; }
+            if (ok) {
+              form.reset();
+              note(form, 'Thank you — your application and CV have been received. ' +
+                         'We will be in touch.', 'ok');
+            } else {
+              note(form, 'That is taking longer than expected. If you do not hear ' +
+                         'back, email <a href="mailto:' + MAIL + '">' + MAIL + '</a>.', 'warn');
+            }
+          };
+          var onDone = function () { finish(true); };
+          if (sink) sink.addEventListener('load', onDone);
+          // the response is cross-origin, so a load event is the only signal we get
+          window.setTimeout(function () { finish(false); }, 20000);
+          return;   // let the browser post it into the iframe
+        }
         e.preventDefault();
 
         if (!form.checkValidity()) {
