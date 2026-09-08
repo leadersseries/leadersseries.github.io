@@ -560,6 +560,90 @@
 .ls-root .ls-card a.ls-mail:hover { border-bottom-color: var(--columbia); }
 
 /* =========================================================
+   FORMS
+   ========================================================= */
+.ls-root .ls-signup {
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  gap: clamp(24px, 4vw, 60px); align-items: center;
+  padding: clamp(30px, 4vw, 44px) 0;
+  border-bottom: 1px solid var(--line-2);
+}
+@media (max-width: 820px) { .ls-root .ls-signup { grid-template-columns: 1fr; } }
+.ls-root .ls-signup-form { display: flex; gap: 10px; flex-wrap: wrap; }
+.ls-root .ls-signup-form .ls-input { flex: 1 1 220px; }
+
+.ls-root .ls-forms {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1px; background: var(--line-2);
+  border: 1px solid var(--line-2); margin-top: clamp(30px, 4vw, 44px);
+}
+.ls-root .ls-panel { background: var(--ink); padding: clamp(26px, 3vw, 38px); }
+.ls-root .ls-panel > p { color: var(--dim); font-size: .97rem; margin-bottom: 22px; }
+
+.ls-root .ls-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 520px) { .ls-root .ls-grid-2 { grid-template-columns: 1fr; } }
+.ls-root .ls-field { display: block; margin-bottom: 14px; }
+.ls-root .ls-field > span {
+  display: block; margin-bottom: 7px;
+  font-family: var(--f-u); font-size: .64rem; font-weight: 600;
+  letter-spacing: .17em; text-transform: uppercase; color: var(--muted);
+}
+.ls-root .ls-field > span b { color: var(--cardinal); font-weight: 600; margin-left: 3px; }
+/* the display:block above out-specifies [hidden], so restore it explicitly */
+.ls-root .ls-field > span[hidden] { display: none; }
+.ls-root .ls-input {
+  width: 100%; padding: 12px 14px; background: var(--ink-2);
+  border: 1px solid var(--line); color: var(--bone);
+  font-family: var(--f-body); font-size: .97rem; border-radius: 0;
+  transition: border-color .2s, background .2s;
+  -webkit-appearance: none; appearance: none;
+}
+.ls-root textarea.ls-input { min-height: 96px; resize: vertical; }
+.ls-root .ls-input::placeholder { color: #5F6472; }
+.ls-root .ls-input:focus {
+  outline: none; border-color: var(--columbia); background: var(--ink-3);
+}
+.ls-root .ls-input:user-invalid { border-color: var(--cardinal); }
+
+.ls-root input[type="file"].ls-input { padding: 10px 12px; font-size: .88rem; cursor: pointer; }
+.ls-root input[type="file"].ls-input::file-selector-button {
+  font-family: var(--f-u); font-size: .64rem; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; padding: 8px 13px; margin-right: 13px; cursor: pointer;
+  background: transparent; border: 1px solid var(--line); color: var(--dim);
+}
+.ls-root .ls-hint {
+  font-family: var(--f-u); font-size: .64rem; letter-spacing: .04em;
+  color: var(--muted); margin-top: -6px; margin-bottom: 14px;
+}
+
+.ls-root .ls-submit {
+  font-family: var(--f-u); font-size: .7rem; font-weight: 700;
+  letter-spacing: .17em; text-transform: uppercase;
+  padding: 13px 24px; border: 1px solid var(--bone);
+  background: var(--bone); color: var(--ink);
+  transition: opacity .2s, background .2s, color .2s;
+}
+.ls-root .ls-submit:hover { opacity: .82; }
+.ls-root .ls-submit[disabled] { opacity: .45; cursor: default; }
+.ls-root .ls-signup-form .ls-submit { flex: 0 0 auto; }
+
+.ls-root .ls-note {
+  margin-top: 14px; font-family: var(--f-u); font-size: .74rem; line-height: 1.6;
+  padding: 12px 14px; border-left: 2px solid var(--muted); color: var(--dim);
+}
+.ls-root .ls-note[hidden] { display: none; }
+.ls-root .ls-note--ok { border-left-color: var(--columbia); color: var(--bone); }
+.ls-root .ls-note--warn { border-left-color: var(--sand); }
+.ls-root .ls-note a { color: var(--columbia); border-bottom: 1px solid rgba(155,203,235,.4); }
+
+.ls-root .ls-sponsor {
+  margin-top: clamp(28px, 4vw, 40px); padding-top: clamp(24px, 3vw, 32px);
+  border-top: 1px solid var(--line-2);
+  display: flex; gap: 18px; flex-wrap: wrap; align-items: baseline;
+}
+.ls-root .ls-sponsor p { color: var(--dim); font-size: .97rem; max-width: 60ch; }
+
+/* =========================================================
    FOOTER
    ========================================================= */
 .ls-root .ls-footer { border-top: 1px solid var(--line-2); padding: clamp(50px, 7vw, 80px) 0 40px; }
@@ -978,36 +1062,101 @@
         <h2 class="ls-h2" style="margin-top:16px;max-width:22ch;">Take part in the Series.</h2>
       </div>
 
-      <div class="ls-connect-grid ls-rv">
-        <div class="ls-card">
+      <!-- Each form posts to the endpoint in its data-endpoint attribute.
+           While that is empty the form will not pretend to work: it shows the
+           email fallback instead of silently discarding a submission.
+           To connect one, paste the provider's URL into data-endpoint. -->
+
+      <div class="ls-signup ls-rv">
+        <div>
           <h3 class="ls-h3">Stay informed</h3>
-          <p>
+          <p class="ls-body" style="margin-top:10px;">
             Receive updates on upcoming Leaders Series sessions, confirmed speakers, and emerging
             themes across capital, technology, energy, and global strategy.
           </p>
         </div>
-        <div class="ls-card">
+        <form class="ls-signup-form ls-form" data-endpoint="" data-kind="Stay informed" novalidate>
+          <label class="ls-field" style="flex:1 1 220px;margin:0;">
+            <span class="ls-sr-only" hidden>Email address</span>
+            <input class="ls-input" type="email" name="email" required
+                   autocomplete="email" placeholder="Enter your email address">
+          </label>
+          <button class="ls-submit" type="submit">Subscribe</button>
+          <p class="ls-note" data-note hidden></p>
+        </form>
+      </div>
+
+      <div class="ls-forms ls-rv">
+
+        <div class="ls-panel">
           <h3 class="ls-h3">Speaker interest</h3>
           <p>
-            If you are a C-suite executive, founder, global head, or institutional leader interested
-            in participating in a future session, please submit a brief profile and area of focus.
+            If you are a C-suite executive, founder, global head, or institutional leader
+            interested in participating in a future session, submit a brief profile and area
+            of focus.
           </p>
+          <form class="ls-form" data-endpoint="" data-kind="Speaker interest" novalidate>
+            <div class="ls-grid-2">
+              <label class="ls-field"><span>First name <b>*</b></span>
+                <input class="ls-input" type="text" name="first_name" required autocomplete="given-name"></label>
+              <label class="ls-field"><span>Last name <b>*</b></span>
+                <input class="ls-input" type="text" name="last_name" required autocomplete="family-name"></label>
+              <label class="ls-field"><span>Email address <b>*</b></span>
+                <input class="ls-input" type="email" name="email" required autocomplete="email"></label>
+              <label class="ls-field"><span>Contact number</span>
+                <input class="ls-input" type="tel" name="phone" autocomplete="tel"></label>
+              <label class="ls-field"><span>Job title <b>*</b></span>
+                <input class="ls-input" type="text" name="job_title" required autocomplete="organization-title"></label>
+              <label class="ls-field"><span>Company <b>*</b></span>
+                <input class="ls-input" type="text" name="company" required autocomplete="organization"></label>
+            </div>
+            <label class="ls-field"><span>Area of focus <b>*</b></span>
+              <textarea class="ls-input" name="area_of_focus" required
+                        placeholder="The themes you would speak to"></textarea></label>
+            <button class="ls-submit" type="submit">Submit profile</button>
+            <p class="ls-note" data-note hidden></p>
+          </form>
         </div>
-        <div class="ls-card">
-          <h3 class="ls-h3">Sponsorship &amp; partnerships</h3>
+
+        <div class="ls-panel">
+          <h3 class="ls-h3">Work with the Series</h3>
           <p>
-            We welcome select institutional partners aligned with long-term capital, innovation, and
-            leadership development. For sponsorship inquiries, collaboration proposals, or
+            The Leaders Series selectively engages graduate students interested in research
+            support, strategy, and event execution. Applications are reviewed on a rolling basis.
+          </p>
+          <form class="ls-form" data-endpoint="" data-kind="Work with the Series" novalidate>
+            <div class="ls-grid-2">
+              <label class="ls-field"><span>Full name <b>*</b></span>
+                <input class="ls-input" type="text" name="full_name" required autocomplete="name"></label>
+              <label class="ls-field"><span>Email address <b>*</b></span>
+                <input class="ls-input" type="email" name="email" required autocomplete="email"></label>
+            </div>
+            <label class="ls-field"><span>School or program <b>*</b></span>
+              <input class="ls-input" type="text" name="program" required
+                     placeholder="e.g. CBS, SIPA, GSAS, SPS"></label>
+            <label class="ls-field"><span>Where you would contribute <b>*</b></span>
+              <textarea class="ls-input" name="interest" required
+                        placeholder="Research support, strategy, or event execution"></textarea></label>
+            <label class="ls-field"><span>Curriculum vitae <b>*</b></span>
+              <input class="ls-input" type="file" name="cv" required
+                     accept=".pdf,.doc,.docx,application/pdf"></label>
+            <p class="ls-hint">PDF or Word, up to 10 MB.</p>
+            <button class="ls-submit" type="submit">Submit application</button>
+            <p class="ls-note" data-note hidden></p>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="ls-sponsor ls-rv">
+        <h3 class="ls-h3" style="flex:0 0 auto;">Sponsorship &amp; partnerships</h3>
+        <div>
+          <p>
+            We welcome select institutional partners aligned with long-term capital, innovation,
+            and leadership development. For sponsorship inquiries, collaboration proposals, or
             institutional partnerships:
           </p>
           <a class="ls-mail" href="mailto:Christinabaroudi@gmail.com">Christinabaroudi@gmail.com</a>
-        </div>
-        <div class="ls-card">
-          <h3 class="ls-h3">Work with the Series</h3>
-          <p>
-            The Leaders Series selectively engages graduate students interested in research support,
-            strategy, and event execution. Applications are reviewed on a rolling basis.
-          </p>
         </div>
       </div>
     </div>
@@ -1147,6 +1296,73 @@
       });
       cards.forEach(function (c) {
         c.hidden = !(want === 'all' || c.getAttribute('data-sector') === want);
+      });
+    });
+  })();
+
+  /* ---- forms ----------------------------------------------------------
+     A static site cannot receive a submission on its own, so each form
+     posts to a third-party endpoint. Until data-endpoint is filled in we
+     refuse to look like it worked: the visitor gets the email address
+     instead, which is better than a lead vanishing into nothing.
+     -------------------------------------------------------------------- */
+  (function () {
+    var MAIL = 'Christinabaroudi@gmail.com';
+
+    function note(form, text, kind) {
+      var el = form.querySelector('[data-note]');
+      if (!el) return;
+      el.innerHTML = text;
+      el.className = 'ls-note' + (kind ? ' ls-note--' + kind : '');
+      el.hidden = false;
+    }
+
+    [].forEach.call(root.querySelectorAll('.ls-form'), function (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          var bad = form.querySelector(':invalid');
+          if (bad) bad.focus();
+          note(form, 'Please complete the required fields.', 'warn');
+          return;
+        }
+
+        var endpoint = (form.getAttribute('data-endpoint') || '').trim();
+        var kind = form.getAttribute('data-kind') || 'Enquiry';
+
+        if (!endpoint) {
+          note(form,
+            'Online sign-up is not connected yet. Please email ' +
+            '<a href="mailto:' + MAIL + '?subject=' + encodeURIComponent(kind) + '">' +
+            MAIL + '</a> and you will be added.', 'warn');
+          return;
+        }
+
+        var btn = form.querySelector('.ls-submit');
+        var label = btn ? btn.textContent : '';
+        if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+        note(form, 'Sending…');
+
+        var data = new FormData(form);
+        data.append('_kind', kind);
+
+        fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+          .then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            form.reset();
+            note(form, 'Thank you — your details have been received. ' +
+                       'A confirmation email is on its way.', 'ok');
+          })
+          .catch(function () {
+            note(form,
+              'Something went wrong sending that. Please email ' +
+              '<a href="mailto:' + MAIL + '?subject=' + encodeURIComponent(kind) + '">' +
+              MAIL + '</a>.', 'warn');
+          })
+          .then(function () {
+            if (btn) { btn.disabled = false; btn.textContent = label; }
+          });
       });
     });
   })();
