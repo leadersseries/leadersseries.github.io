@@ -1127,26 +1127,28 @@
             interested in participating in a future session, submit a brief profile and area
             of focus.
           </p>
-          <form class="ls-form" data-endpoint="https://formsubmit.co/ajax/2614a90a8c953585b9cffc522a8f923e" data-kind="Speaker interest" novalidate>
+          <form class="ls-form" data-native="1" method="post"
+                action="https://assets.mailerlite.com/jsonp/2638411/forms/198887494237816566/subscribe"
+                target="lsUploadSink" data-kind="Speaker interest"
+                data-ok="Thank you — your profile has been received. We will be in touch.">
             <input type="text" name="_honey" tabindex="-1" autocomplete="off"
                    aria-hidden="true" class="ls-honey">
-            <input type="hidden" name="_subject" value="Leaders Series — Speaker interest">
+            <input type="hidden" name="ml-submit" value="1">
+            <input type="hidden" name="anticsrf" value="true">
             <div class="ls-grid-2">
               <label class="ls-field"><span>First name <b>*</b></span>
-                <input class="ls-input" type="text" name="first_name" required autocomplete="given-name"></label>
+                <input class="ls-input" type="text" name="fields[name]" required autocomplete="given-name"></label>
               <label class="ls-field"><span>Last name <b>*</b></span>
-                <input class="ls-input" type="text" name="last_name" required autocomplete="family-name"></label>
+                <input class="ls-input" type="text" name="fields[last_name]" required autocomplete="family-name"></label>
               <label class="ls-field"><span>Email address <b>*</b></span>
-                <input class="ls-input" type="email" name="email" required autocomplete="email"></label>
-              <label class="ls-field"><span>Contact number</span>
-                <input class="ls-input" type="tel" name="phone" autocomplete="tel"></label>
+                <input class="ls-input" type="email" name="fields[email]" required autocomplete="email"></label>
               <label class="ls-field"><span>Job title <b>*</b></span>
-                <input class="ls-input" type="text" name="job_title" required autocomplete="organization-title"></label>
-              <label class="ls-field"><span>Company <b>*</b></span>
-                <input class="ls-input" type="text" name="company" required autocomplete="organization"></label>
+                <input class="ls-input" type="text" name="fields[job_title]" required autocomplete="organization-title"></label>
             </div>
+            <label class="ls-field"><span>Company <b>*</b></span>
+              <input class="ls-input" type="text" name="fields[company]" required autocomplete="organization"></label>
             <label class="ls-field"><span>Area of focus <b>*</b></span>
-              <textarea class="ls-input" name="area_of_focus" required
+              <textarea class="ls-input" name="fields[area_of_focus]" required
                         placeholder="The themes you would speak to"></textarea></label>
             <button class="ls-submit" type="submit">Submit profile</button>
             <p class="ls-note" data-note hidden></p>
@@ -1159,31 +1161,30 @@
             The Leaders Series selectively engages graduate students interested in research
             support, strategy, and event execution. Applications are reviewed on a rolling basis.
           </p>
-          <form class="ls-form" data-native="1" method="POST" enctype="multipart/form-data"
-                action="https://formsubmit.co/2614a90a8c953585b9cffc522a8f923e"
+          <form class="ls-form" data-native="1" method="post"
+                action="https://assets.mailerlite.com/jsonp/2638411/forms/198887583243044409/subscribe"
                 target="lsUploadSink" data-kind="Work with the Series"
-                data-ok="Thank you — your application and CV have been received. We will be in touch.">
+                data-ok="Thank you — your application has been received. We will be in touch.">
             <input type="text" name="_honey" tabindex="-1" autocomplete="off"
                    aria-hidden="true" class="ls-honey">
-            <input type="hidden" name="_subject" value="Leaders Series — Work with the Series">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="ml-submit" value="1">
+            <input type="hidden" name="anticsrf" value="true">
             <div class="ls-grid-2">
               <label class="ls-field"><span>Full name <b>*</b></span>
-                <input class="ls-input" type="text" name="full_name" required autocomplete="name"></label>
+                <input class="ls-input" type="text" name="fields[name]" required autocomplete="name"></label>
               <label class="ls-field"><span>Email address <b>*</b></span>
-                <input class="ls-input" type="email" name="email" required autocomplete="email"></label>
+                <input class="ls-input" type="email" name="fields[email]" required autocomplete="email"></label>
             </div>
             <label class="ls-field"><span>School or program <b>*</b></span>
-              <input class="ls-input" type="text" name="program" required
+              <input class="ls-input" type="text" name="fields[school_or_program]" required
                      placeholder="e.g. CBS, SIPA, GSAS, SPS"></label>
             <label class="ls-field"><span>Where you would contribute <b>*</b></span>
-              <textarea class="ls-input" name="interest" required
+              <textarea class="ls-input" name="fields[where_you_would_contribute]" required
                         placeholder="Research support, strategy, or event execution"></textarea></label>
-            <label class="ls-field"><span>Curriculum vitae <b>*</b></span>
-              <input class="ls-input" type="file" name="cv" required
-                     accept=".pdf,.doc,.docx,application/pdf"></label>
-            <p class="ls-hint">PDF or Word, up to 10 MB. Submitting opens a confirmation page and returns you here.</p>
+            <label class="ls-field"><span>Link to your CV <b>*</b></span>
+              <input class="ls-input" type="url" name="fields[cv_link]" required
+                     placeholder="https://drive.google.com/… or your LinkedIn"></label>
+            <p class="ls-hint">A shareable link — Google Drive, Dropbox, LinkedIn, or a personal site.</p>
             <button class="ls-submit" type="submit">Submit application</button>
             <p class="ls-note" data-note hidden></p>
           </form>
