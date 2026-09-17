@@ -597,7 +597,9 @@
 .ls-root .ls-signup-form .ls-input { flex: 1 1 220px; }
 
 .ls-root .ls-forms {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  /* stacked, not side by side: speaker interest reads first, the student
+     application below it — the two have very different audiences */
+  display: grid; grid-template-columns: 1fr;
   gap: 1px; background: var(--line-2);
   border: 1px solid var(--line-2); margin-top: clamp(30px, 4vw, 44px);
 }
