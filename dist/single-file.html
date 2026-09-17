@@ -1112,13 +1112,17 @@
             themes across capital, technology, energy, and global strategy.
           </p>
         </div>
-        <form class="ls-signup-form ls-form" data-endpoint="https://formsubmit.co/ajax/2614a90a8c953585b9cffc522a8f923e" data-kind="Stay informed" novalidate>
+        <form class="ls-signup-form ls-form" data-native="1" method="post"
+              action="https://assets.mailerlite.com/jsonp/2638411/forms/198741223926663036/subscribe"
+              target="lsUploadSink" data-kind="Stay informed"
+              data-ok="Thank you — you are on the list. We will write when the next session is scheduled.">
             <input type="text" name="_honey" tabindex="-1" autocomplete="off"
                    aria-hidden="true" class="ls-honey">
-            <input type="hidden" name="_subject" value="Leaders Series — Stay informed">
+            <input type="hidden" name="ml-submit" value="1">
+            <input type="hidden" name="anticsrf" value="true">
           <label class="ls-field" style="flex:1 1 220px;margin:0;">
             <span class="ls-sr-only" hidden>Email address</span>
-            <input class="ls-input" type="email" name="email" required
+            <input class="ls-input" type="email" name="fields[email]" required
                    autocomplete="email" placeholder="Enter your email address">
           </label>
           <button class="ls-submit" type="submit">Subscribe</button>
@@ -1169,7 +1173,8 @@
           </p>
           <form class="ls-form" data-native="1" method="POST" enctype="multipart/form-data"
                 action="https://formsubmit.co/2614a90a8c953585b9cffc522a8f923e"
-                target="lsUploadSink" data-kind="Work with the Series">
+                target="lsUploadSink" data-kind="Work with the Series"
+                data-ok="Thank you — your application and CV have been received. We will be in touch.">
             <input type="text" name="_honey" tabindex="-1" autocomplete="off"
                    aria-hidden="true" class="ls-honey">
             <input type="hidden" name="_subject" value="Leaders Series — Work with the Series">
@@ -1378,6 +1383,14 @@
         // visitor never leaves the page. Native validation has already passed
         // by the time a submit event fires, so this only runs on a valid form.
         if (form.hasAttribute('data-native')) {
+          // FormSubmit screened bots server-side; MailerLite does not, so the
+          // honeypot is checked here. Bots see success and nothing is sent.
+          var trap = form.querySelector('.ls-honey');
+          if (trap && trap.value) {
+            e.preventDefault();
+            note(form, form.getAttribute('data-ok') || 'Thank you.', 'ok');
+            return;
+          }
           var sink = document.getElementById('lsUploadSink');
           var nbtn = form.querySelector('.ls-submit');
           var nlabel = nbtn ? nbtn.textContent : '';
@@ -1391,8 +1404,8 @@
             if (nbtn) { nbtn.disabled = false; nbtn.textContent = nlabel; }
             if (ok) {
               form.reset();
-              note(form, 'Thank you — your application and CV have been received. ' +
-                         'We will be in touch.', 'ok');
+              note(form, form.getAttribute('data-ok') ||
+                         'Thank you — that has been received.', 'ok');
             } else {
               note(form, 'That is taking longer than expected. If you do not hear ' +
                          'back, email <a href="mailto:' + MAIL + '">' + MAIL + '</a>.', 'warn');
