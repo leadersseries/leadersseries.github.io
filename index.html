@@ -653,9 +653,6 @@
 .ls-root .ls-submit[disabled] { opacity: .45; cursor: default; }
 .ls-root .ls-signup-form .ls-submit { flex: 0 0 auto; }
 
-.ls-root .ls-sink {
-  position: absolute; width: 0; height: 0; border: 0; visibility: hidden;
-}
 .ls-root .ls-honey {
   position: absolute !important; left: -9999px !important;
   width: 1px; height: 1px; opacity: 0; pointer-events: none;
@@ -1115,17 +1112,15 @@
             themes across capital, technology, energy, and global strategy.
           </p>
         </div>
-        <form class="ls-signup-form ls-form" data-native="1" method="post"
-              action="https://assets.mailerlite.com/jsonp/2638411/forms/198741223926663036/subscribe"
-              target="lsUploadSink" data-kind="Stay informed"
-              data-ok="Thank you — you are on the list. We will write when the next session is scheduled.">
+        <form class="ls-signup-form ls-form" data-endpoint="https://quiet-cherry-f84f.sbaroudi.workers.dev" data-kind="Stay informed"
+              data-ok="Thank you — you are on the list. We will write when the next session is scheduled."
+              novalidate>
             <input type="text" name="_honey" tabindex="-1" autocomplete="off"
                    aria-hidden="true" class="ls-honey">
-            <input type="hidden" name="ml-submit" value="1">
-            <input type="hidden" name="anticsrf" value="true">
+            <input type="hidden" name="form" value="newsletter">
           <label class="ls-field" style="flex:1 1 220px;margin:0;">
             <span class="ls-sr-only" hidden>Email address</span>
-            <input class="ls-input" type="email" name="fields[email]" required
+            <input class="ls-input" type="email" name="email" required
                    autocomplete="email" placeholder="Enter your email address">
           </label>
           <button class="ls-submit" type="submit">Subscribe</button>
@@ -1142,28 +1137,25 @@
             interested in participating in a future session, submit a brief profile and area
             of focus.
           </p>
-          <form class="ls-form" data-native="1" method="post"
-                action="https://assets.mailerlite.com/jsonp/2638411/forms/198887494237816566/subscribe"
-                target="lsUploadSink" data-kind="Speaker interest"
-                data-ok="Thank you — your profile has been received. We will be in touch.">
+          <form class="ls-form" data-endpoint="https://quiet-cherry-f84f.sbaroudi.workers.dev" data-kind="Speaker interest"
+                data-ok="Thank you — your profile has been received. We will be in touch." novalidate>
             <input type="text" name="_honey" tabindex="-1" autocomplete="off"
                    aria-hidden="true" class="ls-honey">
-            <input type="hidden" name="ml-submit" value="1">
-            <input type="hidden" name="anticsrf" value="true">
+            <input type="hidden" name="form" value="speaker">
             <div class="ls-grid-2">
               <label class="ls-field"><span>First name <b>*</b></span>
-                <input class="ls-input" type="text" name="fields[name]" required autocomplete="given-name"></label>
+                <input class="ls-input" type="text" name="name" required autocomplete="given-name"></label>
               <label class="ls-field"><span>Last name <b>*</b></span>
-                <input class="ls-input" type="text" name="fields[last_name]" required autocomplete="family-name"></label>
+                <input class="ls-input" type="text" name="last_name" required autocomplete="family-name"></label>
               <label class="ls-field"><span>Email address <b>*</b></span>
-                <input class="ls-input" type="email" name="fields[email]" required autocomplete="email"></label>
+                <input class="ls-input" type="email" name="email" required autocomplete="email"></label>
               <label class="ls-field"><span>Job title <b>*</b></span>
-                <input class="ls-input" type="text" name="fields[job_title]" required autocomplete="organization-title"></label>
+                <input class="ls-input" type="text" name="job_title" required autocomplete="organization-title"></label>
             </div>
             <label class="ls-field"><span>Company <b>*</b></span>
-              <input class="ls-input" type="text" name="fields[company]" required autocomplete="organization"></label>
+              <input class="ls-input" type="text" name="company" required autocomplete="organization"></label>
             <label class="ls-field"><span>Area of focus <b>*</b></span>
-              <textarea class="ls-input" name="fields[area_of_focus]" required
+              <textarea class="ls-input" name="area_of_focus" required
                         placeholder="The themes you would speak to"></textarea></label>
             <button class="ls-submit" type="submit">Submit profile</button>
             <p class="ls-note" data-note hidden></p>
@@ -1176,28 +1168,25 @@
             The Leaders Series selectively engages graduate students interested in research
             support, strategy, and event execution. Applications are reviewed on a rolling basis.
           </p>
-          <form class="ls-form" data-native="1" method="post"
-                action="https://assets.mailerlite.com/jsonp/2638411/forms/198887583243044409/subscribe"
-                target="lsUploadSink" data-kind="Work with the Series"
-                data-ok="Thank you — your application has been received. We will be in touch.">
+          <form class="ls-form" data-endpoint="https://quiet-cherry-f84f.sbaroudi.workers.dev" data-kind="Work with the Series"
+                data-ok="Thank you — your application has been received. We will be in touch." novalidate>
             <input type="text" name="_honey" tabindex="-1" autocomplete="off"
                    aria-hidden="true" class="ls-honey">
-            <input type="hidden" name="ml-submit" value="1">
-            <input type="hidden" name="anticsrf" value="true">
+            <input type="hidden" name="form" value="student">
             <div class="ls-grid-2">
               <label class="ls-field"><span>Full name <b>*</b></span>
-                <input class="ls-input" type="text" name="fields[name]" required autocomplete="name"></label>
+                <input class="ls-input" type="text" name="name" required autocomplete="name"></label>
               <label class="ls-field"><span>Email address <b>*</b></span>
-                <input class="ls-input" type="email" name="fields[email]" required autocomplete="email"></label>
+                <input class="ls-input" type="email" name="email" required autocomplete="email"></label>
             </div>
             <label class="ls-field"><span>School or program <b>*</b></span>
-              <input class="ls-input" type="text" name="fields[school_or_program]" required
+              <input class="ls-input" type="text" name="school_or_program" required
                      placeholder="e.g. CBS, SIPA, GSAS, SPS"></label>
             <label class="ls-field"><span>Where you would contribute <b>*</b></span>
-              <textarea class="ls-input" name="fields[where_you_would_contribute]" required
+              <textarea class="ls-input" name="where_you_would_contribute" required
                         placeholder="Research support, strategy, or event execution"></textarea></label>
             <label class="ls-field"><span>Link to your CV <b>*</b></span>
-              <input class="ls-input" type="url" name="fields[cv_link]" required
+              <input class="ls-input" type="url" name="cv_link" required
                      placeholder="https://drive.google.com/… or your LinkedIn"></label>
             <p class="ls-hint">A shareable link — Google Drive, Dropbox, LinkedIn, or a personal site.</p>
             <button class="ls-submit" type="submit">Submit application</button>
@@ -1222,8 +1211,6 @@
   </section>
 
 
-      <iframe name="lsUploadSink" id="lsUploadSink" class="ls-sink"
-              title="Application upload target" aria-hidden="true" tabindex="-1"></iframe>
   <!-- ===================== FOOTER ===================== -->
   <footer class="ls-footer">
     <div class="ls-wrap">
@@ -1381,47 +1368,14 @@
 
     [].forEach.call(root.querySelectorAll('.ls-form'), function (form) {
       form.addEventListener('submit', function (e) {
-        // The CV form carries a file. Attachments only work on FormSubmit's
-        // standard endpoint, and that endpoint ignores _next, so it posts
-        // natively into a hidden iframe: the attachment survives and the
-        // visitor never leaves the page. Native validation has already passed
-        // by the time a submit event fires, so this only runs on a valid form.
-        if (form.hasAttribute('data-native')) {
-          // FormSubmit screened bots server-side; MailerLite does not, so the
-          // honeypot is checked here. Bots see success and nothing is sent.
-          var trap = form.querySelector('.ls-honey');
-          if (trap && trap.value) {
-            e.preventDefault();
-            note(form, form.getAttribute('data-ok') || 'Thank you.', 'ok');
-            return;
-          }
-          var sink = document.getElementById('lsUploadSink');
-          var nbtn = form.querySelector('.ls-submit');
-          var nlabel = nbtn ? nbtn.textContent : '';
-          if (nbtn) { nbtn.disabled = true; nbtn.textContent = 'Sending…'; }
-          note(form, 'Sending…');
-          var settled = false;
-          var finish = function (ok) {
-            if (settled) return;
-            settled = true;
-            if (sink) sink.removeEventListener('load', onDone);
-            if (nbtn) { nbtn.disabled = false; nbtn.textContent = nlabel; }
-            if (ok) {
-              form.reset();
-              note(form, form.getAttribute('data-ok') ||
-                         'Thank you — that has been received.', 'ok');
-            } else {
-              note(form, 'That is taking longer than expected. If you do not hear ' +
-                         'back, email <a href="mailto:' + MAIL + '">' + MAIL + '</a>.', 'warn');
-            }
-          };
-          var onDone = function () { finish(true); };
-          if (sink) sink.addEventListener('load', onDone);
-          // the response is cross-origin, so a load event is the only signal we get
-          window.setTimeout(function () { finish(false); }, 20000);
-          return;   // let the browser post it into the iframe
-        }
         e.preventDefault();
+
+        // Bots fill the hidden trap. Show success, send nothing onward.
+        var trap = form.querySelector('.ls-honey');
+        if (trap && trap.value) {
+          note(form, form.getAttribute('data-ok') || 'Thank you.', 'ok');
+          return;
+        }
 
         if (!form.checkValidity()) {
           var bad = form.querySelector(':invalid');
@@ -1453,9 +1407,8 @@
           .then(function (r) {
             if (!r.ok) throw new Error('HTTP ' + r.status);
             form.reset();
-            // FormSubmit does not send an auto-response to AJAX submissions,
-            // so don't promise the sender a confirmation email
-            note(form, 'Thank you — your details have been received. ' +
+            note(form, form.getAttribute('data-ok') ||
+                       'Thank you — your details have been received. ' +
                        'We will be in touch.', 'ok');
           })
           .catch(function () {
