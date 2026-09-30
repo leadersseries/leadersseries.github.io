@@ -500,6 +500,57 @@
   border: 1px solid var(--line); padding: clamp(28px, 4vw, 44px);
   margin-top: clamp(30px, 4vw, 44px); background: var(--ink-2);
 }
+/* the next session carries more weight than the archive below it */
+.ls-root .ls-next {
+  display: grid; grid-template-columns: 132px minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 40px); margin-top: clamp(22px, 3vw, 30px);
+}
+@media (max-width: 760px) { .ls-root .ls-next { grid-template-columns: 1fr; gap: 16px; } }
+.ls-root .ls-next-date { font-family: var(--f-u); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.ls-root .ls-next-date b {
+  display: block; font-size: clamp(2.6rem, 5vw, 3.4rem); font-weight: 300;
+  letter-spacing: -.03em; color: var(--columbia);
+}
+.ls-root .ls-next-date span {
+  display: block; margin-top: 6px; font-size: .68rem; font-weight: 600;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+}
+.ls-root .ls-next-name {
+  font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 400; letter-spacing: -.018em;
+}
+.ls-root .ls-next-role {
+  margin-top: 8px; font-family: var(--f-u); font-size: .76rem; font-weight: 500;
+  letter-spacing: .04em; color: var(--muted); line-height: 1.6;
+}
+.ls-root .ls-next-session {
+  margin-top: 18px; font-size: clamp(1.1rem, 1.7vw, 1.3rem);
+  font-style: italic; color: var(--columbia);
+}
+.ls-root .ls-next-qs { margin-top: 18px; display: grid; gap: 9px; max-width: 58ch; }
+.ls-root .ls-next-qs li {
+  position: relative; padding-left: 20px; color: var(--dim); font-size: .99rem;
+}
+.ls-root .ls-next-qs li::before {
+  content: ""; position: absolute; left: 0; top: .72em;
+  width: 9px; height: 1px; background: var(--columbia); opacity: .7;
+}
+.ls-root .ls-next-meta {
+  margin-top: clamp(22px, 3vw, 28px); padding-top: 20px;
+  border-top: 1px solid var(--line-2);
+  display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: center;
+}
+.ls-root .ls-next-meta div {
+  font-family: var(--f-u); font-size: .72rem; font-weight: 500;
+  letter-spacing: .08em; color: var(--dim); display: flex; gap: 9px;
+}
+.ls-root .ls-next-meta div b {
+  color: var(--muted); font-weight: 600; text-transform: uppercase;
+  font-size: .63rem; letter-spacing: .16em;
+}
+.ls-root .ls-next-note {
+  margin-top: 18px; font-family: var(--f-u); font-size: .72rem;
+  line-height: 1.7; color: var(--muted);
+}
 
 /* =========================================================
    COMPANY LOGOS + SECTOR FILTER
@@ -1080,13 +1131,36 @@
       </div>
 
       <div class="ls-upcoming ls-rv">
-        <span class="ls-label">Upcoming</span>
-        <h3 class="ls-h3" style="margin-top:12px;">
-          Our next conversation with a global decision-maker is currently being scheduled.
-        </h3>
-        <p class="ls-body" style="margin-top:12px;">
-          Join the Leaders Series mailing list to receive advance notice of upcoming sessions.
-        </p>
+        <span class="ls-label">Next conversation</span>
+
+        <div class="ls-next">
+          <div class="ls-next-date"><b>15</b><span>Oct 2026</span></div>
+          <div>
+            <h3 class="ls-next-name">Giordano Albertazzi</h3>
+            <p class="ls-next-role">Chief Executive Officer, Vertiv</p>
+            <p class="ls-next-session">Building the Infrastructure for the AI Era</p>
+
+            <ul class="ls-next-qs">
+              <li>What does it take to make AI work at scale?</li>
+              <li>Why does AI require so much power?</li>
+              <li>How do you keep high-density computing cool?</li>
+              <li>What careers will help build the AI era?</li>
+              <li>What could slow AI growth?</li>
+            </ul>
+
+            <div class="ls-next-meta">
+              <div><b>Time</b><span>08:00 AM ET</span></div>
+              <div><b>Format</b><span>Online | Live</span></div>
+              <div><b>Sector</b><span>Technology</span></div>
+              <span class="ls-tag">Registration required</span>
+            </div>
+
+            <p class="ls-next-note">
+              Moderated by Maria Cristina Baroudi. Open to graduate students across CBS, Columbia
+              Engineering, SIPA, the Climate School, GSAS and SPS.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
