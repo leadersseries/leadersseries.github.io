@@ -532,6 +532,15 @@
   color: var(--muted); font-weight: 600; text-transform: uppercase;
   font-size: .63rem; letter-spacing: .16em;
 }
+.ls-root .ls-register {
+  font-family: var(--f-u); font-size: .72rem; font-weight: 600;
+  letter-spacing: .15em; text-transform: uppercase;
+  padding: 11px 20px; border: 1px solid var(--columbia); color: var(--columbia);
+  transition: background .25s, color .25s;
+}
+.ls-root .ls-register:hover, .ls-root .ls-register:focus-visible {
+  background: var(--columbia); color: var(--ink);
+}
 .ls-root .ls-next-note {
   margin-top: 18px; font-family: var(--f-u); font-size: .72rem;
   line-height: 1.7; color: var(--muted);
@@ -1137,7 +1146,8 @@
               <div><b>Time</b><span>08:00 AM ET</span></div>
               <div><b>Format</b><span>Online | Live</span></div>
               <div><b>Sector</b><span>Technology</span></div>
-              <span class="ls-tag">Registration required</span>
+              <a class="ls-register" href="https://www.eventbrite.com/e/building-the-infrastructure-for-the-ai-era-tickets-2002178954149"
+                 target="_blank" rel="noopener">Register &#8594;</a>
             </div>
 
             <p class="ls-next-note">
